@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KUMO // VERSE — Minimalist Comic &amp; Anime Streetwear</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logos/kv-slash.svg" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#0F1115',
+            manga: '#F4F1EA',
+            crimson: '#E62429',
+            cyan: '#00E5FF',
+            concrete: '#2A2E37',
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      background-color: #0F1115;
+      color: #F4F1EA;
+    }
+
+    /* Subtle Halftone & Manga Grid Background */
+    .bg-halftone-subtle {
+      background-image: radial-gradient(rgba(244, 241, 234, 0.06) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0F1115;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2A2E37;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #E62429;
+    }
+
+    /* Fade-In & Scroll Reveal Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .animate-fade-up {
+      opacity: 0;
+      animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .animate-fade-scale {
+      opacity: 0;
+      animation: fadeInScale 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+    .delay-400 { animation-delay: 400ms; }
+
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Dynamic Fluid Motion & Micro-Interactions */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-9px) rotate(1.5deg); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 24px rgba(230, 36, 41, 0.14); }
+      50% { box-shadow: 0 0 42px rgba(0, 229, 255, 0.24); }
+    }
+
+    .animate-float-slow {
+      animation: floatSlow 5.5s ease-in-out infinite;
+    }
+
+    .animate-pulse-glow {
+      animation: pulseGlow 4.5s ease-in-out infinite;
+    }
+
+    /* 3D Fluid Card Tilt & Glare */
+    .product-card-fluid {
+      transform-style: preserve-3d;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.35s ease;
+      will-change: transform;
+    }
+
+    .product-card-fluid:hover {
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.75), 0 0 20px -5px rgba(0, 229, 255, 0.15);
+    }
+
+    /* Fluid Drawer & Modal Transitions */
+    .drawer-panel {
+      transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-backdrop {
+      transition: opacity 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    .modal-card {
+      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    }
+    .editorial-panel { position: relative; overflow: hidden; }
+    .editorial-panel::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .18; background-image: radial-gradient(rgba(244,241,234,.4) .7px, transparent .7px); background-size: 9px 9px; mask-image: linear-gradient(90deg, black, transparent 85%); }
+    .detail-line { border-top: 1px solid rgba(244,241,234,.10); padding-top: .75rem; margin-top: .75rem; }
+    details.faq-item { border: 1px solid rgba(244,241,234,.12); border-radius: 1rem; background: rgba(42,46,55,.35); padding: 1rem 1.15rem; }
+    details.faq-item summary { cursor: pointer; list-style: none; font-family: 'Space Grotesk', sans-serif; font-size: .82rem; font-weight: 600; }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary::after { content: '+'; float: right; color: #00E5FF; font-size: 1.1rem; }
+    details.faq-item[open] summary::after { content: '−'; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+
+    /* K/V DETAIL PASS — layered visual depth, editorial framing, and micro-details */
+    :root { --kv-red:#e62429; --kv-cyan:#00e5ff; --kv-paper:#f4f1ea; --kv-panel:#171a20; }
+    body { background-image: radial-gradient(circle at 8% 12%, rgba(230,36,41,.075), transparent 26rem), radial-gradient(circle at 92% 35%, rgba(0,229,255,.055), transparent 28rem); }
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.035; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E); }
+    header, main, footer, #shop-details { position:relative; z-index:2; }
+    header { box-shadow: 0 12px 32px rgba(0,0,0,.22); }
+    header a[href="#top"] span:first-child { text-shadow: 0 0 22px rgba(230,36,41,.14); }
+    #top { isolation:isolate; }
+    #top::before { content:"K/V — DROP 01"; position:absolute; top:2.1rem; right:3vw; font:600 9px 'Space Grotesk',sans-serif; letter-spacing:.24em; color:rgba(244,241,234,.24); writing-mode:vertical-rl; }
+    #top::after { content:""; position:absolute; inset: auto 0 0; height:2px; background:linear-gradient(90deg,transparent,rgba(230,36,41,.7),rgba(0,229,255,.65),transparent); }
+    #hero-emblem-card { border-radius:1.65rem; background: radial-gradient(circle at 50% 45%, rgba(230,36,41,.18), transparent 55%), linear-gradient(145deg,rgba(42,46,55,.8),rgba(15,17,21,.95)); box-shadow: inset 0 0 0 1px rgba(244,241,234,.04), 0 30px 80px rgba(0,0,0,.35); }
+    #hero-emblem-card::before, #hero-emblem-card::after { content:""; position:absolute; width:2.25rem; height:2.25rem; border-color:rgba(0,229,255,.65); pointer-events:none; }
+    #hero-emblem-card::before { top:1rem; left:1rem; border-top:1px solid; border-left:1px solid; }
+    #hero-emblem-card::after { bottom:1rem; right:1rem; border-bottom:1px solid; border-right:1px solid; }
+    .editorial-panel { border-radius:1.1rem !important; transition:transform .28s ease, border-color .28s ease, background .28s ease; }
+    .editorial-panel:hover { transform:translateY(-4px); border-color:rgba(244,241,234,.28); }
+    .product-card-fluid { position:relative; background:linear-gradient(160deg,rgba(244,241,234,.045),rgba(15,17,21,.1)); border-radius:1.25rem !important; }
+    .product-card-fluid::before { content:"K/V"; position:absolute; z-index:3; top:.85rem; right:.9rem; font:700 8px 'Space Grotesk',sans-serif; letter-spacing:.18em; color:rgba(244,241,234,.25); pointer-events:none; }
+    .product-card-fluid:hover { border-color:rgba(0,229,255,.38) !important; }
+    .product-card-fluid img { filter:saturate(1.04) contrast(1.03); }
+    .filter-btn { border:1px solid rgba(244,241,234,.08); backdrop-filter:blur(8px); }
+    .filter-btn:hover { border-color:rgba(0,229,255,.35); box-shadow:0 0 18px rgba(0,229,255,.05); }
+    #drop-story { background-image:linear-gradient(115deg,rgba(230,36,41,.025),transparent 36%,rgba(0,229,255,.025)); }
+    #spider-collection > div:first-child, #anime-collection h2 { text-wrap:balance; }
+    #spider-collection h2, #anime-collection h2 { position:relative; display:inline-block; }
+    #spider-collection h2::after, #anime-collection h2::after { content:""; display:block; height:2px; width:3.5rem; margin-top:.8rem; background:linear-gradient(90deg,var(--kv-red),transparent); }
+    #shop-details details[open] { border-color:rgba(0,229,255,.28); box-shadow:0 0 20px rgba(0,229,255,.035); }
+    a, button { -webkit-tap-highlight-color:transparent; }
+    a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline:2px solid var(--kv-cyan); outline-offset:3px; }
+    @media (max-width:640px) { #top::before { top:1rem; right:1rem; font-size:8px; } #hero-emblem-card { max-width:calc(100vw - 2rem); } .product-card-fluid::before { top:.6rem; right:.65rem; } }
+
+  </style>
+  <link rel="stylesheet" href="assets/kumo-reboot.css" />
+  <link rel="stylesheet" href="assets/kumo-verse-motion.css" />
+</head>
+<body class="bg-midnight text-manga font-sans antialiased selection:bg-crimson selection:text-manga overflow-x-hidden">
+
+  <!-- FLUID SCROLL PROGRESS BAR -->
+  <div class="fixed top-0 left-0 right-0 h-[2.5px] z-50 bg-transparent pointer-events-none">
+    <div id="scroll-progress-bar" class="h-full w-0 bg-gradient-to-r from-crimson via-purple-500 to-cyan transition-[width] duration-75 ease-out"></div>
+  </div>
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="bg-concrete/70 border-b border-manga/10 text-[11px] tracking-[0.18em] uppercase font-display text-manga/85 py-2 px-4 text-center">
+    <span class="text-crimson font-semibold">DROP 01 LIVE</span> &nbsp;//&nbsp; FREE SHIPPING ON ORDERS OVER $50 &nbsp;//&nbsp; FREE STICKER WITH EVERY ORDER
+  </div>
+
+  <!-- STICKY SHOPPER NAVIGATION -->
+  <header class="sticky top-0 z-40 bg-midnight/90 backdrop-blur-md border-b border-manga/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <!-- Brand Wordmark -->
+      <a href="#top" class="flex items-center gap-2.5 group shrink-0">
+        <img src="assets/logos/kv-slash.svg" alt="" class="w-7 h-7 sm:w-8 sm:h-8" width="32" height="32" />
+        <img src="assets/logos/kv-wordmark.svg" alt="KUMO // VERSE" class="h-7 sm:h-8 w-auto hidden sm:block" height="32" />
+        <span class="font-display font-bold text-lg tracking-wider text-manga sm:hidden">
+          KUMO <span class="text-crimson inline-block transform -skew-x-12 font-bold">//</span> VERSE
+        </span>
+      </a>
+
+      <!-- Clean Shopper Section Links -->
+      <nav class="hidden md:flex items-center gap-7 text-xs font-display font-semibold tracking-widest uppercase text-manga/75">
+        <a href="#spider-collection" class="hover:text-crimson transition-colors">Spider-Verse</a>
+        <a href="#anime-collection" class="hover:text-cyan transition-colors">Anime Archive</a>
+        <button onclick="openSizeGuide()" class="hover:text-manga transition-colors uppercase tracking-widest">Size Guide</button>
+      </nav>
+
+      <!-- Right Action Controls: Search + Bag -->
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <div class="relative hidden sm:block">
+          <input id="shop-search-input" type="text" oninput="handleSearch(this.value)" placeholder="Search hoodies, JJK, tees..." class="w-44 lg:w-56 pl-8 pr-3 py-1.5 rounded-full bg-concrete/60 border border-manga/15 text-xs text-manga placeholder-manga/40 focus:outline-none focus:border-cyan transition-all" />
+          <svg class="w-3.5 h-3.5 text-manga/45 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="M21 21l-4.35-4.35" stroke-linecap="round"></path>
+          </svg>
+        </div>
+
+        <button onclick="openSizeGuide()" class="md:hidden px-3 py-1.5 rounded-full border border-manga/15 text-[11px] font-display uppercase tracking-wider text-manga/80 hover:text-manga">
+          Sizing
+        </button>
+
+        <button onclick="toggleCart(true)" class="relative flex items-center gap-2 px-4 py-2 rounded-full bg-manga text-midnight font-display font-semibold text-xs tracking-wider uppercase hover:bg-crimson hover:text-manga transition-all active:scale-95">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path d="M6 7h12l1 12H5L6 7z" stroke-linejoin="round"></path>
+            <path d="M9 7V5a3 3 0 016 0v2" stroke-linecap="round"></path>
+          </svg>
+          <span>Bag</span>
+          <span id="cart-count-badge" class="px-1.5 py-0.2 rounded-full bg-midnight text-manga text-[10px]">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- CUSTOMER STOREFRONT                                                   -->
+  <!-- ===================================================================== -->
+  <main id="view-storefront" class="block">
+    <!-- K/V REBUILT EDITORIAL HERO -->
+    <section id="top" class="kv-hero">
+      <div class="kv-hero-grain"></div>
+      <div class="kv-hero-inner">
+        <div class="kv-hero-copy">
+          <p class="kv-kicker"><span></span> ANIME CULTURE / STREETWEAR / DROP 001</p>
+          <h1>WEAR YOUR<br><em>OWN</em> <b>VERSE.</b></h1>
+          <p class="kv-hero-lede">Graphic streetwear for the worlds you carry with you. Heavyweight essentials, original artwork, and a little chaos in every detail.</p>
+          <div class="kv-hero-actions"><a href="#spider-collection" class="kv-btn kv-btn-red">SHOP THE DROP <span>↗</span></a><a href="#anime-collection" class="kv-text-link">EXPLORE THE ARCHIVE <span>→</span></a></div>
+          <div class="kv-hero-stats"><div><strong>260<span> GSM</span></strong><small>HEAVYWEIGHT FABRIC</small></div><div><strong>01</strong><small>THE FIRST CHAPTER</small></div><div><strong>∞</strong><small>BUILT FOR YOUR ROTATION</small></div></div>
+        </div>
+        <div class="kv-hero-visual" aria-label="KUMO VERSE streetwear campaign lookbook">
+          <div class="kv-photo-main" id="hero-stage-root" aria-hidden="true"></div>
+          <div class="kv-photo-stamp">K/V<br><span>FIELD<br>NOTES 001</span></div>
+          <div class="kv-photo-caption"><span>THE CITY IS YOUR CANVAS</span><b>東京 — NEW YORK</b></div>
+          <div class="kv-photo-index">01 <i>/</i> 04</div>
+        </div>
+      </div>
+      <div class="kv-marquee"><div>MAKE NOISE <i>✳</i> BREAK THE PANEL <i>✳</i> FIND YOUR VERSE <i>✳</i> MAKE NOISE <i>✳</i> BREAK THE PANEL <i>✳</i> FIND YOUR VERSE <i>✳</i> MAKE NOISE <i>✳</i> BREAK THE PANEL <i>✳</i> FIND YOUR VERSE <i>✳</i> MAKE NOISE <i>✳</i> BREAK THE PANEL <i>✳</i> FIND YOUR VERSE <i>✳</i></div></div>
+    </section>
+
+    <!-- BRAND EDITORIAL: DROP STORY & DESIGN DETAILS -->
+    <section id="drop-story" class="reveal-on-scroll border-y border-manga/10 bg-midnight relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+        <div class="grid lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-5 space-y-5">
+            <p class="text-[10px] sm:text-xs font-display tracking-[.25em] uppercase text-crimson">K/V Field Notes // 001</p>
+            <h2 class="font-display font-bold text-3xl sm:text-5xl leading-[1.02] tracking-tight">BUILT FOR THE<br/><span class="text-manga/45">PANEL BREAK.</span></h2>
+            <p class="text-sm text-manga/65 leading-relaxed max-w-xl">KUMO // VERSE is a streetwear project at the intersection of manga energy, everyday comfort, and graphic design. Each drop takes its cues from comic panels, character silhouettes, iconography, and the visual language of anime—then translates those references into wearable pieces.</p>
+            <div class="flex flex-wrap gap-2 pt-1 text-[10px] font-display tracking-widest uppercase">
+              <span class="border border-manga/15 bg-concrete/30 px-3 py-2 rounded-full">Comic-inspired graphics</span><span class="border border-manga/15 bg-concrete/30 px-3 py-2 rounded-full">Everyday silhouettes</span><span class="border border-manga/15 bg-concrete/30 px-3 py-2 rounded-full">Small drop energy</span>
+            </div>
+          </div>
+          <div class="lg:col-span-7 grid sm:grid-cols-3 gap-3">
+            <article class="editorial-panel rounded-2xl border border-crimson/25 bg-gradient-to-br from-crimson/15 to-concrete/20 p-5 min-h-44"><p class="text-[10px] font-display tracking-[.2em] text-crimson uppercase">01 / Graphic</p><h3 class="font-display text-lg font-bold mt-5">LOUD ART.<br/>CLEAN FIT.</h3><p class="text-xs text-manga/55 mt-2 leading-relaxed">Emblems, panel textures, and high-contrast prints made to stand out without overcomplicating the fit.</p></article>
+            <article class="editorial-panel rounded-2xl border border-cyan/20 bg-gradient-to-br from-cyan/10 to-concrete/20 p-5 min-h-44"><p class="text-[10px] font-display tracking-[.2em] text-cyan uppercase">02 / Wear</p><h3 class="font-display text-lg font-bold mt-5">ROOM TO<br/>MOVE.</h3><p class="text-xs text-manga/55 mt-2 leading-relaxed">Relaxed streetwear shapes, considered fabric weights, and easy styling for daily rotation.</p></article>
+            <article class="editorial-panel rounded-2xl border border-purple-400/20 bg-gradient-to-br from-purple-500/10 to-concrete/20 p-5 min-h-44"><p class="text-[10px] font-display tracking-[.2em] text-purple-300 uppercase">03 / Collect</p><h3 class="font-display text-lg font-bold mt-5">YOUR ARC.<br/>YOUR PIECE.</h3><p class="text-xs text-manga/55 mt-2 leading-relaxed">Explore tees, hoodies, cases, and sticker packs—then build a rotation from your favorite worlds.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- GARMENT / PRINT DETAIL STRIP -->
+    <section id="craft-details" class="reveal-on-scroll border-b border-manga/10 bg-concrete/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div class="border-l border-crimson/60 pl-3"><p class="text-[9px] uppercase tracking-[.22em] text-crimson font-display">Fabric / 01</p><p class="text-xs mt-1 font-semibold">Heavyweight feel</p><p class="text-[10px] text-manga/45 mt-1">Structured everyday silhouettes</p></div>
+          <div class="border-l border-cyan/60 pl-3"><p class="text-[9px] uppercase tracking-[.22em] text-cyan font-display">Artwork / 02</p><p class="text-xs mt-1 font-semibold">Panel-inspired graphics</p><p class="text-[10px] text-manga/45 mt-1">Bold placement, high contrast</p></div>
+          <div class="border-l border-purple-400/60 pl-3"><p class="text-[9px] uppercase tracking-[.22em] text-purple-300 font-display">Fit / 03</p><p class="text-xs mt-1 font-semibold">Relaxed streetwear</p><p class="text-[10px] text-manga/45 mt-1">Room to layer and move</p></div>
+          <div class="border-l border-emerald-400/60 pl-3"><p class="text-[9px] uppercase tracking-[.22em] text-emerald-300 font-display">Drop / 04</p><p class="text-xs mt-1 font-semibold">Limited-run energy</p><p class="text-[10px] text-manga/45 mt-1">Build your own anime rotation</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOBILE SEARCH BAR -->
+    <div class="sm:hidden max-w-7xl mx-auto px-4 pt-6">
+      <div class="relative">
+        <input id="shop-search-mobile" type="text" oninput="handleSearch(this.value)" placeholder="Search Spider-Verse, JJK, Naruto, One Piece, anime..." class="w-full pl-9 pr-4 py-2.5 rounded-full bg-concrete/60 border border-manga/15 text-xs text-manga placeholder-manga/40 focus:outline-none focus:border-cyan" />
+        <svg class="w-4 h-4 text-manga/45 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="M21 21l-4.35-4.35" stroke-linecap="round"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- SECTION 01: SPIDER-VERSE COLLECTION -->
+    <section id="spider-collection" class="reveal-on-scroll max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div>
+          <p class="text-xs font-display tracking-[0.22em] uppercase text-crimson mb-2">Collection 01 // Web-Slinger Arc</p>
+          <h2 class="font-display font-bold text-2xl sm:text-4xl tracking-tight text-manga">SPIDER-VERSE DROP</h2>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="filterProducts('all')" data-filter="all" class="filter-btn px-4 py-2 rounded-full text-xs font-display font-semibold tracking-wider uppercase bg-manga text-midnight transition-all">
+            All Pieces
+          </button>
+          <button onclick="filterProducts('hoodies')" data-filter="hoodies" class="filter-btn px-4 py-2 rounded-full text-xs font-display font-semibold tracking-wider uppercase bg-concrete/60 text-manga/75 hover:text-manga transition-all">
+            Hoodies
+          </button>
+          <button onclick="filterProducts('tees')" data-filter="tees" class="filter-btn px-4 py-2 rounded-full text-xs font-display font-semibold tracking-wider uppercase bg-concrete/60 text-manga/75 hover:text-manga transition-all">
+            Oversized Tees
+          </button>
+          <button onclick="filterProducts('accessories')" data-filter="accessories" class="filter-btn px-4 py-2 rounded-full text-xs font-display font-semibold tracking-wider uppercase bg-concrete/60 text-manga/75 hover:text-manga transition-all">
+            Accessories
+          </button>
+          <button onclick="filterProducts('phone-cases')" data-filter="phone-cases" class="filter-btn px-4 py-2 rounded-full text-xs font-display font-semibold tracking-wider uppercase bg-concrete/60 text-manga/75 hover:text-manga transition-all">
+            Phone Cases
+          </button>
+        </div>
+      </div>
+
+      <!-- Spider-Verse Grid -->
+      <div id="spider-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </section>
+
+    <!-- SECTION 02: ANIME ARCHIVE (JJK & DEMON SLAYER) -->
+    <section id="anime-collection" class="reveal-on-scroll border-t border-manga/10 bg-concrete/15">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-display tracking-[0.22em] uppercase text-cyan mb-2">
+              <span>Collection 02 // Cursed Energy &amp; Breathing Forms</span>
+            </div>
+            <h2 class="font-display font-bold text-2xl sm:text-4xl tracking-tight text-manga">ANIME ARCHIVE</h2>
+          </div>
+          <p class="text-xs text-manga/60 max-w-md leading-relaxed">
+            Series-inspired graphics across cursed techniques, shinobi crests, pirate flags, titan marks, hero emblems, ghoul masks, and futuristic mecha motifs—built for everyday streetwear rotation.
+          </p>
+        </div>
+
+        <!-- Anime Grid -->
+        <div id="anime-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+      </div>
+    </section>
+
+    <!-- SHOPPER PERKS & BRAND PROMISE STRIP -->
+    <section class="reveal-on-scroll border-t border-manga/10 bg-midnight">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="rounded-3xl bg-concrete/25 border border-manga/10 p-6 space-y-2">
+            <span class="text-xs font-display uppercase tracking-widest text-crimson">01 // Fabric Quality</span>
+            <h3 class="font-display font-bold text-base text-manga">Heavyweight 260 GSM</h3>
+            <p class="text-xs text-manga/60 leading-relaxed">Pre-shrunk combed cotton tees and plush brushed fleece hoodies built to hold their boxy drape wash after wash.</p>
+          </div>
+          <div class="rounded-3xl bg-concrete/25 border border-manga/10 p-6 space-y-2">
+            <span class="text-xs font-display uppercase tracking-widest text-cyan">02 // Free Bonus</span>
+            <h3 class="font-display font-bold text-base text-manga">Free Sticker</h3>
+            <p class="text-xs text-manga/60 leading-relaxed">Every order ships with a complimentary weatherproof die-cut sticker from the current drop.</p>
+          </div>
+          <div class="rounded-3xl bg-concrete/25 border border-manga/10 p-6 space-y-2">
+            <span class="text-xs font-display uppercase tracking-widest text-emerald-400">03 // Fair Pricing</span>
+            <h3 class="font-display font-bold text-base text-manga">Direct-to-Fan Value</h3>
+            <p class="text-xs text-manga/60 leading-relaxed">No middleman markups. Save $4 to $9 per piece compared to major online marketplaces.</p>
+          </div>
+          <div class="rounded-3xl bg-concrete/25 border border-manga/10 p-6 space-y-2">
+            <span class="text-xs font-display uppercase tracking-widest text-purple-400">04 // Easy Exchanges</span>
+            <h3 class="font-display font-bold text-base text-manga">30-Day Size Guarantee</h3>
+            <p class="text-xs text-manga/60 leading-relaxed">Between sizes? Check our <button onclick="openSizeGuide()" class="underline text-manga hover:text-cyan">Size Guide</button> or swap within 30 days hassle-free.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FAQ / SHOP DETAILS -->
+  <section id="shop-details" class="reveal-on-scroll border-t border-manga/10 bg-concrete/10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="mb-8"><p class="text-[10px] font-display tracking-[.24em] uppercase text-cyan mb-2">Shop Notes // Read Before Checkout</p><h2 class="font-display font-bold text-2xl sm:text-4xl">THE DETAILS, CLEARLY.</h2><p class="text-sm text-manga/55 mt-3 max-w-2xl">Quick answers on fit, prints, care, shipping, and choosing the right piece.</p></div>
+      <div class="grid md:grid-cols-2 gap-3">
+        <details class="faq-item"><summary>How should I choose my size?</summary><p class="text-xs text-manga/55 leading-relaxed mt-3">Check the Size Guide before ordering. For a relaxed oversized look, compare the garment measurements with a tee or hoodie you already like. If you're between sizes, use the fit preference as your guide.</p></details>
+        <details class="faq-item"><summary>How do I keep the artwork looking fresh?</summary><p class="text-xs text-manga/55 leading-relaxed mt-3">Turn printed garments inside out, wash cold with similar colors, use a gentle cycle, and avoid ironing directly over the print. Air-drying is recommended to help preserve the graphic.</p></details>
+        <details class="faq-item"><summary>What are the sticker packs like?</summary><p class="text-xs text-manga/55 leading-relaxed mt-3">Sticker packs are normal die-cut decals—not holographic—designed for notebooks, laptop covers, bottles, and other smooth surfaces. Clean and dry the surface before applying.</p></details>
+        <details class="faq-item"><summary>Are phone cases part of the drop?</summary><p class="text-xs text-manga/55 leading-relaxed mt-3">Yes. Phone cases are listed as their own product category. Check the product details and device compatibility before ordering so the case matches your phone model.</p></details>
+        <details class="faq-item"><summary>What does the product card include?</summary><p class="text-xs text-manga/55 leading-relaxed mt-3">Each card shows the product name, design description, price comparison, product type, and available size or item option. Open Details for the product's expanded view.</p></details>
+        <details class="faq-item"><summary>How do I browse the anime collections?</summary><p class="text-xs text-manga/55 leading-relaxed mt-3">Use the search bar or category filters to narrow the catalog by product type or anime keywords. Clear the filter if no matches appear.</p></details>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="border-t border-manga/10 bg-midnight py-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-manga/50">
+      <div class="flex items-center gap-3">
+        <img src="assets/logos/kv-mark.svg" alt="" class="w-9 h-9 opacity-90" width="36" height="36" />
+        <div class="font-display font-bold tracking-wider text-manga">
+          KUMO <span class="text-crimson">//</span> VERSE &nbsp;<span class="font-normal text-manga/40">© 2026</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#spider-collection" class="hover:text-manga transition-colors">Spider-Verse</a>
+        <a href="#anime-collection" class="hover:text-manga transition-colors">Anime Archive</a>
+        <a href="#shop-details" class="hover:text-manga transition-colors">Shop Details</a>
+        <button onclick="openSizeGuide()" class="hover:text-manga transition-colors">Size Guide</button>
+      </div>
+      <p>Your Friendly Neighborhood Otaku • Worldwide Shipping</p>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- PRODUCT DETAIL & FIT QUICK-VIEW MODAL                                 -->
+  <!-- ===================================================================== -->
+  <div id="quickview-modal" class="modal-backdrop fixed inset-0 z-50 hidden opacity-0 items-center justify-center p-4 bg-midnight/85 backdrop-blur-md">
+    <div id="quickview-card" class="modal-card scale-95 opacity-0 relative w-full max-w-2xl rounded-3xl bg-concrete border border-manga/15 shadow-2xl overflow-hidden">
+      <button onclick="closeQuickView()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-midnight/80 text-manga/70 hover:text-manga flex items-center justify-center text-sm transition-transform hover:rotate-90">✕</button>
+      <div id="quickview-body" class="grid grid-cols-1 md:grid-cols-2"></div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- SIZE & FIT GUIDE MODAL                                                -->
+  <!-- ===================================================================== -->
+  <div id="sizeguide-modal" class="modal-backdrop fixed inset-0 z-50 hidden opacity-0 items-center justify-center p-4 bg-midnight/85 backdrop-blur-md">
+    <div id="sizeguide-card" class="modal-card scale-95 opacity-0 relative w-full max-w-lg rounded-3xl bg-concrete border border-manga/15 shadow-2xl p-6 sm:p-8 space-y-5">
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="text-[10px] font-display uppercase tracking-widest text-cyan">Streetwear Fit Chart</span>
+          <h3 class="font-display font-bold text-xl text-manga">SIZE &amp; FIT GUIDE (INCHES)</h3>
+        </div>
+        <button onclick="closeSizeGuide()" class="w-8 h-8 rounded-full bg-midnight/80 text-manga/70 hover:text-manga flex items-center justify-center text-sm">✕</button>
+      </div>
+      <p class="text-xs text-manga/65 leading-relaxed">
+        All hoodies and tees are cut with a relaxed, modern streetwear drape. Order your true size for a boxy fit, or size down for a standard slim fit.
+      </p>
+      <div class="overflow-x-auto rounded-2xl border border-manga/10 bg-midnight/80">
+        <table class="w-full text-left text-xs">
+          <thead class="border-b border-manga/10 text-manga/50 font-display uppercase text-[10px]">
+            <tr>
+              <th class="py-2.5 px-4">Size</th>
+              <th class="py-2.5 px-4">Chest Width</th>
+              <th class="py-2.5 px-4">Body Length</th>
+              <th class="py-2.5 px-4">Fit Note</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-manga/10 text-manga/85">
+            <tr><td class="py-2.5 px-4 font-bold">S</td><td class="py-2.5 px-4">21.0"</td><td class="py-2.5 px-4">27.5"</td><td class="py-2.5 px-4 text-manga/55">5'4" – 5'8"</td></tr>
+            <tr><td class="py-2.5 px-4 font-bold">M</td><td class="py-2.5 px-4">22.5"</td><td class="py-2.5 px-4">28.5"</td><td class="py-2.5 px-4 text-manga/55">5'8" – 5'11"</td></tr>
+            <tr><td class="py-2.5 px-4 font-bold text-cyan">L (Popular)</td><td class="py-2.5 px-4">24.0"</td><td class="py-2.5 px-4">29.5"</td><td class="py-2.5 px-4 text-manga/55">5'10" – 6'2"</td></tr>
+            <tr><td class="py-2.5 px-4 font-bold">XL</td><td class="py-2.5 px-4">25.5"</td><td class="py-2.5 px-4">30.5"</td><td class="py-2.5 px-4 text-manga/55">6'1" + / Oversized</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <button onclick="closeSizeGuide()" class="w-full py-3 rounded-full bg-manga text-midnight font-display font-bold text-xs uppercase tracking-wider hover:bg-cyan transition-colors">
+        Got It
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- SLIDE-OVER SHOPPING BAG DRAWER                                        -->
+  <!-- ===================================================================== -->
+  <div id="cart-drawer" class="fixed inset-0 z-50 hidden pointer-events-none">
+    <div id="cart-backdrop" onclick="toggleCart(false)" class="modal-backdrop opacity-0 absolute inset-0 bg-midnight/80 backdrop-blur-sm"></div>
+    <aside id="cart-panel" class="drawer-panel translate-x-full absolute right-0 top-0 bottom-0 w-full max-w-md bg-midnight border-l border-manga/15 flex flex-col justify-between p-6 shadow-2xl">
+      <div class="space-y-3 pb-4 border-b border-manga/10">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="font-display font-bold text-lg tracking-tight text-manga">YOUR SHOPPING BAG</h3>
+            <p class="text-[11px] text-manga/50">Includes 1 free sticker pack</p>
+          </div>
+          <button onclick="toggleCart(false)" class="w-8 h-8 rounded-full bg-concrete/70 text-manga/70 hover:text-manga flex items-center justify-center text-sm transition-transform hover:rotate-90">✕</button>
+        </div>
+
+        <!-- Free Shipping Progress Bar -->
+        <div class="p-3 rounded-2xl bg-concrete/35 border border-manga/10 space-y-1.5">
+          <p id="free-shipping-text" class="text-[11px] font-display text-manga/80">Add $50.00 more for <span class="text-cyan font-semibold">FREE Express Shipping</span></p>
+          <div class="w-full h-1.5 rounded-full bg-midnight overflow-hidden">
+            <div id="free-shipping-bar" class="h-full w-0 bg-gradient-to-r from-crimson to-cyan transition-all duration-300"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="cart-items-container" class="flex-1 overflow-y-auto py-4 space-y-3"></div>
+
+      <div class="pt-4 border-t border-manga/10 space-y-3">
+        <div class="flex items-center justify-between text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3.5 py-2 rounded-xl">
+          <span>Your Total Savings vs. Amazon</span>
+          <strong id="cart-savings-total">$0.00</strong>
+        </div>
+        <div class="flex items-center justify-between text-sm font-display">
+          <span class="text-manga/70">Estimated Total</span>
+          <span id="cart-subtotal" class="font-bold text-lg text-manga">$0.00</span>
+        </div>
+        <button onclick="completeCheckout()" class="w-full py-3.5 rounded-full bg-crimson text-manga font-display font-bold text-xs tracking-[0.16em] uppercase hover:bg-crimson/90 transition-all">
+          Checkout Now →
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast-banner" class="fixed bottom-5 right-5 z-50 hidden items-center gap-2.5 px-4 py-3 rounded-2xl bg-concrete border border-cyan/40 text-xs font-display text-manga shadow-2xl">
+    <span class="w-2 h-2 rounded-full bg-cyan"></span>
+    <span id="toast-message">Added to bag</span>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- STOREFRONT INTERACTION & CATALOG LOGIC                                -->
+  <!-- ===================================================================== -->
+  <script>
+    // 1. PRODUCT CATALOG
+    const PRODUCTS = [
+      {
+        id: 'kv-hoodie-01',
+        universe: 'spider',
+        category: 'hoodies',
+        badge: 'Bestseller',
+        name: 'Web-Slinger Arc Heavyweight Hoodie',
+        subtitle: '260 GSM Brushed Fleece • Left-Chest Classic Spider + Manga Back Panel',
+        fabricDetails: '80% Ring-Spun Combed Cotton, 20% Recycled Poly • Double-lined hood, dropped shoulders, raised puff-ink back art.',
+        price: 38.99,
+        amazonPrice: 46.99,
+        garmentColor: '#0F1115',
+        artworkType: 'crest',
+        backArtworkType: 'manga-panel',
+        hasBackPrint: true,
+        sizes: ['S', 'M', 'L', 'XL'],
+        defaultSize: 'L',
+        rating: '4.9 (142)'
+      },
+      {
+        id: 'kv-tee-01',
+        universe: 'spider',
+        category: 'tees',
+        badge: 'Drop 01',
+        name: 'Split-Panel Manga Oversized Tee',
+        subtitle: '100% Combed Cotton • Minimal Wordmark + Full Manga Back Art',
+        fabricDetails: '240 GSM Heavyweight Jersey • Boxy streetwear silhouette, ribbed collar, high-density screen print.',
+        price: 22.99,
+        amazonPrice: 27.99,
+        garmentColor: '#F4F1EA',
+        artworkType: 'wordmark',
+        backArtworkType: 'manga-panel',
+        hasBackPrint: true,
+        sizes: ['S', 'M', 'L', 'XL'],
+        defaultSize: 'L',
+        rating: '4.9 (98)'
+      },
+      {
+        id: 'kv-cap-01',
+        universe: 'spider',
+        category: 'accessories',
+        badge: 'Embroidered',
+        name: 'KUMO // VERSE Embroidered Dad Cap',
+        subtitle: 'Low-Profile Brushed Twill • Crimson Slash 3D Stitch',
+        fabricDetails: '100% Chino Cotton Twill • Unstructured 6-panel crown, antique brass buckle strap.',
+        price: 17.99,
+        amazonPrice: 21.99,
+        garmentColor: '#0F1115',
+        artworkType: 'wordmark',
+        hasBackPrint: false,
+        sizes: ['One Size'],
+        defaultSize: 'One Size',
+        rating: '4.8 (64)'
+      },
+      {
+        id: 'kv-sticker-01',
+        universe: 'spider',
+        category: 'accessories',
+        badge: 'Waterproof',
+        name: 'Spider-Verse Sticker Pack',
+        subtitle: 'Weatherproof Prism Vinyl • 3"×3" Die-Cut for Laptops & Decks',
+        fabricDetails: 'Weatherproof vinyl • Scratch-resistant, dishwasher-safe, zero-residue peel.',
+        price: 4.99,
+        amazonPrice: 7.99,
+        garmentColor: '#0F1115',
+        artworkType: 'crest',
+        hasBackPrint: false,
+        sizes: ['3"×3"'],
+        defaultSize: '3"×3"',
+        rating: '5.0 (210)'
+      },
+      // ANIME ARCHIVE (JJK & DEMON SLAYER)
+      {
+        id: 'kv-jjk-hoodie',
+        universe: 'anime',
+        category: 'hoodies',
+        badge: 'JJK Inspired',
+        name: 'Purple Hollow // Cursed Technique Hoodie',
+        subtitle: 'Red & Blue Fusion w/ Glowing Purple Core • Front & Back Print',
+        fabricDetails: '260 GSM Heavyweight Fleece • Vibrant cyan, crimson & purple print on jet-black cotton.',
+        price: 38.99,
+        amazonPrice: 47.99,
+        garmentColor: '#0F1115',
+        artworkType: 'jjk-void',
+        backArtworkType: 'jjk-void-back',
+        hasBackPrint: true,
+        sizes: ['S', 'M', 'L', 'XL'],
+        defaultSize: 'L',
+        rating: '5.0 (186)'
+      },
+      {
+        id: 'kv-ds-tee',
+        universe: 'anime',
+        category: 'tees',
+        badge: 'Demon Slayer',
+        name: 'Sun Breathing // Hinokami Oversized Tee',
+        subtitle: 'Crimson Sun Crest + Checkered Haori & Nichirin Blade Back',
+        fabricDetails: '240 GSM Combed Cotton • Relaxed boxy drop-shoulder fit, fade-resistant inks.',
+        price: 22.99,
+        amazonPrice: 28.99,
+        garmentColor: '#0F1115',
+        artworkType: 'ds-hinokami',
+        backArtworkType: 'ds-hinokami-back',
+        hasBackPrint: true,
+        sizes: ['S', 'M', 'L', 'XL'],
+        defaultSize: 'L',
+        rating: '4.9 (119)'
+      },
+      {
+        id: 'kv-jjk-shrine-tee',
+        universe: 'anime',
+        category: 'tees',
+        badge: 'JJK Inspired',
+        name: 'Malevolent Shrine // Pure Crimson Tee',
+        subtitle: 'Minimal Red Torii Seal on Midnight Black Heavyweight Cotton',
+        fabricDetails: '240 GSM Combed Cotton • Clean front crest + oversized crimson shrine back print.',
+        price: 22.99,
+        amazonPrice: 27.99,
+        garmentColor: '#0F1115',
+        artworkType: 'jjk-shrine',
+        backArtworkType: 'jjk-shrine',
+        hasBackPrint: true,
+        sizes: ['S', 'M', 'L', 'XL'],
+        defaultSize: 'M',
+        rating: '4.9 (93)'
+      },
+      {
+        id: 'kv-anime-stickers',
+        universe: 'anime',
+        category: 'accessories',
+        badge: 'Bundle Pack',
+        name: 'Cursed & Hashira Sticker Pack',
+        subtitle: 'Purple Hollow + Hinokami Sun Die-Cut Vinyl Decals',
+        fabricDetails: 'Weatherproof vinyl • 3"×3" die-cut decals built for water bottles, cases & skate decks.',
+        price: 5.49,
+        amazonPrice: 8.99,
+        garmentColor: '#0F1115',
+        artworkType: 'ds-hinokami',
+        hasBackPrint: false,
+        sizes: ['3"×3"'],
+        defaultSize: '3"×3"',
+        rating: '4.9 (77)'
+      },
+      {
+        id: 'kv-spider-case',
+        universe: 'spider',
+        category: 'phone-cases',
+        badge: 'Phone Case',
+        name: 'Spider-Verse Phone Case',
+        subtitle: 'Protective Case • Classic Spider Crest Print',
+        fabricDetails: 'Slim protective case with raised edges, shock-absorbing corners, and a crisp Spider-Verse artwork print.',
+        price: 16.99,
+        amazonPrice: 22.99,
+        garmentColor: '#0F1115',
+        artworkType: 'crest',
+        hasBackPrint: false,
+        sizes: ['Phone Case'],
+        defaultSize: 'Phone Case',
+        rating: '4.9 (72)'
+      },
+      {
+        id: 'kv-crewneck-02',
+        universe: 'spider',
+        category: 'hoodies',
+        badge: 'New Arrival',
+        name: 'Queens Midnight Crewneck Sweatshirt',
+        subtitle: 'Heavyweight Fleece • Classic Spider Chest Emblem + Manga Back',
+        fabricDetails: '260 GSM Brushed Fleece • Ribbed cuffs and hem, relaxed boxy fit, zero hood drawstrings.',
+        price: 34.99,
+        amazonPrice: 42.99,
+        garmentColor: '#2A2E37',
+        artworkType: 'crest',
+        backArtworkType: 'manga-panel',
+        hasBackPrint: true,
+        sizes: ['S', 'M', 'L', 'XL'],
+        defaultSize: 'L',
+        rating: '4.9 (84)'
+      },
+      {
+        id: 'kv-tote-01',
+        universe: 'spider',
+        category: 'accessories',
+        badge: 'Everyday Carry',
+        name: 'Manga Panel Heavy Canvas Tote Bag',
+        subtitle: '14 oz Natural Canvas • Split-Panel Art & Reinforced Straps',
+        fabricDetails: 'Heavyweight 14 oz cotton canvas • Holds laptops, sketchbooks, comics, and daily essentials.',
+        price: 15.99,
+        amazonPrice: 21.99,
+        garmentColor: '#F4F1EA',
+        artworkType: 'manga-panel',
+        hasBackPrint: false,
+        sizes: ['One Size'],
+        defaultSize: 'One Size',
+        rating: '4.8 (59)'
+      },
+      {
+        id: 'kv-anime-case',
+        universe: 'anime',
+        category: 'phone-cases',
+        badge: 'Phone Case',
+        name: 'Cursed Energy Phone Case',
+        subtitle: 'Protective Case • Purple Hollow Inspired Artwork',
+        fabricDetails: 'Slim protective case with raised edges, shock-absorbing corners, and a bold anime-inspired energy print.',
+        price: 16.99,
+        amazonPrice: 22.99,
+        garmentColor: '#0F1115',
+        artworkType: 'jjk-void',
+        hasBackPrint: false,
+        sizes: ['Phone Case'],
+        defaultSize: 'Phone Case',
+        rating: '4.9 (81)'
+      },
+      {
+        id: 'kv-ds-crewneck',
+        universe: 'anime',
+        category: 'hoodies',
+        badge: 'Demon Slayer',
+        name: 'Water & Sun Hashira Crewneck',
+        subtitle: 'Heavyweight Fleece • Hinokami Crest + Haori Back Print',
+        fabricDetails: '260 GSM Brushed Fleece • Soft interior fleece with crisp front-and-back artwork.',
+        price: 34.99,
+        amazonPrice: 43.99,
+        garmentColor: '#0F1115',
+        artworkType: 'ds-hinokami',
+        backArtworkType: 'ds-hinokami-back',
+        hasBackPrint: true,
+        sizes: ['S', 'M', 'L', 'XL'],
+        defaultSize: 'L',
+        rating: '5.0 (106)'
+      },
+      {
+        id: 'kv-deskmat-01',
+        universe: 'anime',
+        category: 'accessories',
+        badge: 'Setup Essential',
+        name: 'Purple Hollow XL Gaming Desk Mat',
+        subtitle: '31.5" × 15.7" Smooth Cloth • Non-Slip Stitched Edge',
+        fabricDetails: '4mm cushioned micro-weave surface for smooth mouse glide with anti-fray stitched borders.',
+        price: 19.99,
+        amazonPrice: 26.99,
+        garmentColor: '#0F1115',
+        artworkType: 'jjk-void',
+        hasBackPrint: false,
+        sizes: ['XL Mat'],
+        defaultSize: 'XL Mat',
+        rating: '4.9 (131)'
+      }
+      ,
+      // EXPANDED ANIME ARCHIVE — original, series-specific inspired emblems
+      { id: 'kv-naruto-tee', universe: 'anime', category: 'tees', badge: 'Ninja Archive', name: 'Red Eye // Shinobi Oversized Tee', subtitle: 'Three-Tomoe Eye Crest • Hidden Leaf Inspired Graphics', fabricDetails: '240 GSM heavyweight cotton • custom eye emblem and village-inspired details.', price: 22.99, amazonPrice: 28.99, garmentColor: '#F4F1EA', artworkType: 'naruto-eye', backArtworkType: 'naruto-eye', hasBackPrint: true, sizes: ['S','M','L','XL'], defaultSize: 'L', rating: '4.9 (88)' },
+      { id: 'kv-onepiece-hoodie', universe: 'anime', category: 'hoodies', badge: 'Pirate Archive', name: 'Grand Line // Pirate Crew Hoodie', subtitle: 'Skull & Crossbones Crest • Ocean Blue Accents', fabricDetails: '260 GSM fleece • pirate emblem, compass details, and wave-inspired print.', price: 38.99, amazonPrice: 47.99, garmentColor: '#0F1115', artworkType: 'onepiece-skull', backArtworkType: 'onepiece-skull', hasBackPrint: true, sizes: ['S','M','L','XL'], defaultSize: 'L', rating: '4.9 (91)' },
+      { id: 'kv-dragonball-tee', universe: 'anime', category: 'tees', badge: 'Power-Up Drop', name: 'Saiyan // Power Surge Tee', subtitle: 'Electric Aura • Capsule-Tech Inspired Mark', fabricDetails: '240 GSM cotton • bold energy burst and futuristic capsule-style insignia.', price: 22.99, amazonPrice: 28.99, garmentColor: '#F4F1EA', artworkType: 'db-aura', backArtworkType: 'db-aura', hasBackPrint: true, sizes: ['S','M','L','XL'], defaultSize: 'L', rating: '4.8 (73)' },
+      { id: 'kv-bleach-crewneck', universe: 'anime', category: 'hoodies', badge: 'Soul Archive', name: 'Soul Reaper // Black Blade Crewneck', subtitle: 'Minimal Blade Crest • Ink Black & Bone White', fabricDetails: '260 GSM fleece • clean blade silhouette with sharp monochrome print.', price: 34.99, amazonPrice: 43.99, garmentColor: '#0F1115', artworkType: 'bleach-blade', backArtworkType: 'bleach-blade', hasBackPrint: true, sizes: ['S','M','L','XL'], defaultSize: 'L', rating: '4.9 (82)' },
+      { id: 'kv-chainsaw-tee', universe: 'anime', category: 'tees', badge: 'Devil Hunter', name: 'Sawtooth // Devil Hunter Tee', subtitle: 'Mechanical Teeth Graphic • Red Grunge Print', fabricDetails: '240 GSM cotton • distressed typography and original saw-inspired graphic.', price: 22.99, amazonPrice: 28.99, garmentColor: '#0F1115', artworkType: 'chainsaw-mark', backArtworkType: 'chainsaw-mark', hasBackPrint: true, sizes: ['S','M','L','XL'], defaultSize: 'L', rating: '4.8 (69)' },
+      { id: 'kv-anime-sticker-mix', universe: 'anime', category: 'accessories', badge: 'Anime Mix', name: 'Anime Icons // Sticker Mix', subtitle: 'Shinobi Eye • Pirate Skull • Energy Burst • Blade Marks', fabricDetails: 'Weatherproof vinyl decals • original anime-inspired icon mix for laptops, bottles, and skate decks.', price: 5.99, amazonPrice: 8.99, garmentColor: '#0F1115', artworkType: 'onepiece-skull', hasBackPrint: false, sizes: ['Sticker Pack'], defaultSize: 'Sticker Pack', rating: '4.9 (61)' },
+      { id: 'kv-hero-academy-tee', universe: 'anime', category: 'tees', badge: 'Hero Archive', name: 'Plus Ultra // Hero Academy Tee', subtitle: 'Hero Crest • Bold Red & Cyan Impact Graphics', fabricDetails: '240 GSM cotton • original hero-school inspired crest and comic action accents.', price: 22.99, amazonPrice: 28.99, garmentColor: '#F4F1EA', artworkType: 'mha-hero', backArtworkType: 'mha-hero', hasBackPrint: true, sizes: ['S','M','L','XL'], defaultSize: 'L', rating: '4.8 (64)' },
+      { id: 'kv-titan-hoodie', universe: 'anime', category: 'hoodies', badge: 'Titan Archive', name: 'Wings of Freedom // Scout Hoodie', subtitle: 'Wing Crest • Steel, Bone & Cyan Graphic', fabricDetails: '260 GSM fleece • original scout-inspired wing emblem and distressed map textures.', price: 38.99, amazonPrice: 47.99, garmentColor: '#0F1115', artworkType: 'aot-wings', backArtworkType: 'aot-wings', hasBackPrint: true, sizes: ['S','M','L','XL'], defaultSize: 'L', rating: '4.9 (57)' },
+      { id: 'kv-ghoul-tee', universe: 'anime', category: 'tees', badge: 'Ghoul Archive', name: 'One-Eyed // Ghoul Mask Tee', subtitle: 'Mask Mark • Red Ink & Dark Manga Panels', fabricDetails: '240 GSM cotton • original dark urban manga mask-inspired artwork.', price: 22.99, amazonPrice: 28.99, garmentColor: '#0F1115', artworkType: 'tokyo-ghoul', backArtworkType: 'tokyo-ghoul', hasBackPrint: true, sizes: ['S','M','L','XL'], defaultSize: 'L', rating: '4.8 (52)' },
+      { id: 'kv-mecha-crewneck', universe: 'anime', category: 'hoodies', badge: 'Mecha Archive', name: 'Unit // Neon Mecha Crewneck', subtitle: 'Angular Armor Crest • Neon Green & Red Details', fabricDetails: '260 GSM fleece • original futuristic mecha armor graphic with sharp geometric lines.', price: 34.99, amazonPrice: 43.99, garmentColor: '#0F1115', artworkType: 'eva-mecha', backArtworkType: 'eva-mecha', hasBackPrint: true, sizes: ['S','M','L','XL'], defaultSize: 'L', rating: '4.8 (49)' }
+    ];
+
+    // 2. SHOPPER STATE
+    const state = {
+      filter: 'all',
+      searchQuery: '',
+      selectedSizes: {},
+      productViews: {},
+      cart: []
+    };
+
+    function loadCart() {
+      try {
+        const raw = localStorage.getItem('kv_cart');
+        if (raw) state.cart = JSON.parse(raw) || [];
+      } catch (e) { state.cart = []; }
+    }
+    function saveCart() {
+      try { localStorage.setItem('kv_cart', JSON.stringify(state.cart)); } catch (e) {}
+    }
+
+    PRODUCTS.forEach(p => {
+      state.selectedSizes[p.id] = p.defaultSize;
+      state.productViews[p.id] = 'front';
+    });
+    loadCart();
+
+    // 3. ORIGINAL COMIC + MANGA ARTWORK RENDERERS
+    let ARTUID = 0;
+    const TAU = Math.PI * 2;
+    const svgWrap = (vb, body) => `<svg viewBox="${vb}" class="w-full h-full" fill="none">${body}</svg>`;
+    const pt = (a, cx, cy, r) => `${(cx + r * Math.cos(a)).toFixed(1)} ${(cy + r * Math.sin(a)).toFixed(1)}`;
+
+    function webPath(cx, cy, R, n, rings, sag) {
+      let d = '';
+      for (let i = 0; i < n; i++) d += `M${cx} ${cy}L${pt(-Math.PI / 2 + i * TAU / n, cx, cy, R)}`;
+      for (let k = 1; k <= rings; k++) {
+        const r = R * k / rings;
+        for (let i = 0; i < n; i++) {
+          const a0 = -Math.PI / 2 + i * TAU / n, a1 = a0 + TAU / n;
+          d += (i ? '' : `M${pt(a0, cx, cy, r)}`) + `Q${pt((a0 + a1) / 2, cx, cy, r * (1 - sag))} ${pt(a1, cx, cy, r)}`;
+        }
+      }
+      return d;
+    }
+
+    function burst(cx, cy, r0, r1, n, col, sw, rot = 0) {
+      let d = '';
+      for (let i = 0; i < n; i++) {
+        const a = rot + i * TAU / n;
+        d += `M${pt(a, cx, cy, r0)}L${pt(a, cx, cy, i % 2 ? r1 : r1 * 0.78)}`;
+      }
+      return `<path d="${d}" stroke="${col}" stroke-width="${sw}" stroke-linecap="round"/>`;
+    }
+
+    function swirl(cx, cy, r, col, sw, rot = 0, n = 3, span = 1.6) {
+      let d = '';
+      for (let i = 0; i < n; i++) {
+        const a0 = rot + i * TAU / n;
+        d += `M${pt(a0, cx, cy, r)}A${r} ${r} 0 0 1 ${pt(a0 + span, cx, cy, r)}`;
+      }
+      return `<path d="${d}" stroke="${col}" stroke-width="${sw}" stroke-linecap="round"/>`;
+    }
+
+    function flames(cx, cy, r0, r1, n, col, rot = 0) {
+      let d = '';
+      for (let i = 0; i < n; i++) {
+        const a = rot + i * TAU / n, tip = i % 2 ? r1 * 0.78 : r1, rm = (r0 + tip) / 2;
+        d += `M${pt(a - 0.17, cx, cy, r0)}Q${pt(a - 0.03, cx, cy, rm)} ${pt(a + 0.12, cx, cy, tip)}Q${pt(a + 0.13, cx, cy, rm)} ${pt(a + 0.17, cx, cy, r0)}Z`;
+      }
+      return `<path d="${d}" fill="${col}"/>`;
+    }
+
+    function voidArt(u, ink) {
+      const grad = (id, c) => `<radialGradient id="${u}${id}"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="${c}"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`;
+      return `<defs>${grad('b', '#00E5FF')}${grad('r', '#E62429')}${grad('p', '#A855F7')}</defs>
+        ${burst(100, 100, 34, 96, 28, '#A855F7', 2.2)}
+        <circle cx="66" cy="100" r="42" fill="url(#${u}b)"/><circle cx="134" cy="100" r="42" fill="url(#${u}r)"/>
+        ${swirl(66, 100, 36, '#00E5FF', 3)}${swirl(66, 100, 25, ink, 1.4, 0.9)}
+        ${swirl(134, 100, 36, '#E62429', 3, Math.PI)}${swirl(134, 100, 25, ink, 1.4, Math.PI + 0.9)}
+        <circle cx="100" cy="100" r="30" fill="url(#${u}p)"/><circle cx="100" cy="100" r="8" fill="#fff"/>
+        <circle cx="100" cy="100" r="93" stroke="${ink}" stroke-opacity=".35" stroke-dasharray="2 6"/>`;
+    }
+
+    function getArtworkSVG(type, isLightBg = false) {
+      const ink = isLightBg ? '#0F1115' : '#F4F1EA';
+      const u = 'a' + (++ARTUID);
+      const F = 'font-family="Space Grotesk, Arial, sans-serif" font-weight="700"';
+
+      switch (type) {
+        case 'crest': {
+          const legs = 'M95 76L72 60L60 32M94 81L60 72L46 48M94 87L56 98L44 134M95 93L70 118L64 166M105 76L128 60L140 32M106 81L140 72L154 48M106 87L144 98L156 134M105 93L130 118L136 166';
+          const spider = c => `<g fill="${c}"><ellipse cx="100" cy="118" rx="13" ry="22"/><ellipse cx="100" cy="86" rx="10" ry="12"/><path d="M92 84L96 78L100 84L104 78L108 84" fill="none" stroke="#F4F1EA" stroke-width="2" stroke-linecap="round"/></g><path d="${legs}" stroke="${c}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+          return svgWrap('0 0 200 200', `
+            <defs><pattern id="${u}d" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.3" fill="#00E5FF"/></pattern></defs>
+            <circle cx="100" cy="100" r="88" fill="url(#${u}d)" opacity=".3"/>
+            <path d="${webPath(100, 100, 88, 10, 5, 0.2)}" stroke="${ink}" stroke-opacity=".4" stroke-width="1.2"/>
+            <g transform="translate(3 2.5)" opacity=".9">${spider('#00E5FF')}</g>
+            ${spider('#E62429')}
+            <path d="M96 108H104L100 118L104 128H96L100 118Z" fill="${ink}"/>`);
+        }
+
+        case 'manga-panel': {
+          const pA = 'M10 8H110V56L10 64Z', pB = 'M10 70H56V130H10Z', pC = 'M64 66H110V130H64Z';
+          return svgWrap('0 0 120 140', `
+            <defs>
+              <clipPath id="${u}a"><path d="${pA}"/></clipPath><clipPath id="${u}b"><path d="${pB}"/></clipPath><clipPath id="${u}c"><path d="${pC}"/></clipPath>
+              <pattern id="${u}t" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="2" cy="2" r="0.9" fill="${ink}"/></pattern>
+            </defs>
+            <g clip-path="url(#${u}a)">${burst(60, 34, 14, 90, 30, ink, 1.1)}<circle cx="60" cy="34" r="12" fill="#E62429"/>
+              <text x="60" y="38" text-anchor="middle" font-size="11" ${F} fill="${ink}">ドン</text></g>
+            <g clip-path="url(#${u}b)"><rect x="10" y="70" width="46" height="30" fill="url(#${u}t)" opacity=".5"/>
+              <circle cx="42" cy="84" r="8" stroke="#00E5FF" stroke-width="2"/>
+              <path d="M10 130V104H18V96H26V110H32V90H40V112H48V100H56V130Z" fill="#E62429"/></g>
+            <g clip-path="url(#${u}c)"><rect x="64" y="66" width="46" height="64" fill="url(#${u}t)" opacity=".5"/>
+              <path d="M68 98Q87 80 106 98Q87 116 68 98Z" fill="${ink}"/><circle cx="87" cy="98" r="9" fill="#00E5FF"/><circle cx="87" cy="98" r="4.2" fill="#0F1115"/>
+              <circle cx="83.5" cy="94.5" r="2.4" fill="#fff"/><path d="M66 99Q87 77 108 99M102 92L110 87M97 88L103 81" stroke="#E62429" stroke-width="2.4" stroke-linecap="round"/></g>
+            <g stroke="${ink}" stroke-width="2.5" stroke-linejoin="round"><path d="${pA}"/><path d="${pB}"/><path d="${pC}"/></g>
+            <text x="10" y="138" font-size="6.5" ${F} fill="${ink}">KUMO // VERSE</text>`);
+        }
+
+        case 'wordmark':
+          return svgWrap('0 0 200 64', `
+            <text x="28" y="30" font-size="20" letter-spacing="1.2" ${F} fill="${ink}">KUMO</text>
+            <path d="M92 12L106 42" stroke="#E62429" stroke-width="3.2" stroke-linecap="round"/>
+            <path d="M102 10L116 40" stroke="#00E5FF" stroke-width="3.2" stroke-linecap="round"/>
+            <text x="122" y="30" font-size="20" letter-spacing="1.2" ${F} fill="${ink}">VERSE</text>
+            <text x="100" y="54" text-anchor="middle" font-size="9" letter-spacing="4" ${F} fill="#00E5FF">クモ ヴァース</text>`);
+
+        case 'jjk-void':
+          return svgWrap('0 0 200 200', voidArt(u, ink));
+
+        case 'jjk-void-back':
+          return svgWrap('0 0 120 140', `
+            <rect x="12" y="8" width="96" height="124" stroke="#A855F7" stroke-width="2"/><rect x="16" y="12" width="88" height="116" stroke="#A855F7" stroke-opacity=".45" stroke-width=".8"/>
+            <g transform="translate(14 14) scale(.46)">${voidArt(u, ink)}</g>
+            <text x="22" y="30" font-size="13" ${F} fill="#A855F7">紫</text>
+            <text x="60" y="119" text-anchor="middle" font-size="9.5" letter-spacing="1.5" ${F} fill="${ink}">PURPLE HOLLOW</text>`);
+
+        case 'ds-hinokami':
+          return svgWrap('0 0 200 200', `
+            ${flames(100, 100, 44, 92, 16, '#E62429')}${flames(100, 100, 44, 66, 16, '#FF8A3D', 0.2)}
+            <circle cx="100" cy="100" r="40" fill="#0F1115" stroke="#E62429" stroke-width="5"/>
+            <circle cx="100" cy="100" r="26" fill="#E62429"/><circle cx="100" cy="100" r="17" stroke="${ink}" stroke-width="1.6"/>
+            <path d="M100 16A84 84 0 0 1 184 100" stroke="${ink}" stroke-opacity=".5" stroke-width="2" stroke-linecap="round"/>`);
+
+        case 'ds-hinokami-back': {
+          let ck = '', wv = '';
+          for (let r = 0; r < 8; r++) for (let c = 0; c < 7; c++) if ((r + c) % 2 === 0) ck += `<rect x="${(14 + c * 13.14).toFixed(1)}" y="${10 + r * 15}" width="13.14" height="15"/>`;
+          for (let r = 0; r < 2; r++) for (let c = 0; c < 6; c++) {
+            const x = 14 + c * 22 + (r % 2 ? 11 : 0), y = 114 + r * 8;
+            wv += `M${x - 11} ${y}A11 11 0 0 1 ${x + 11} ${y}M${x - 7} ${y}A7 7 0 0 1 ${x + 7} ${y}M${x - 3} ${y}A3 3 0 0 1 ${x + 3} ${y}`;
+          }
+          return svgWrap('0 0 120 140', `
+            <defs><clipPath id="${u}c"><rect x="14" y="10" width="92" height="120"/></clipPath></defs>
+            <g clip-path="url(#${u}c)"><g fill="#10B981" fill-opacity=".6">${ck}</g>
+              <circle cx="32" cy="32" r="10" fill="#E62429"/><circle cx="32" cy="32" r="14" stroke="#E62429" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <path d="${wv}" stroke="${ink}" stroke-opacity=".65" stroke-width="1.2"/>
+              <path d="M26 122L104 26" stroke="#E62429" stroke-width="5" stroke-opacity=".5"/><path d="M22 120L100 24" stroke="${ink}" stroke-width="2.6" stroke-linecap="round"/></g>
+            <rect x="14" y="10" width="92" height="120" stroke="#E62429" stroke-width="2.5"/>
+            <text x="14" y="138" font-size="6.5" ${F} fill="${ink}">HINOKAMI // KUMO</text>`);
+        }
+
+        case 'naruto-eye':
+          return svgWrap('0 0 200 200', `<circle cx="100" cy="100" r="82" stroke="#E62429" stroke-width="5"/><circle cx="100" cy="100" r="58" stroke="#E62429" stroke-width="3"/><circle cx="100" cy="100" r="30" fill="#E62429"/><circle cx="100" cy="100" r="14" fill="#0F1115"/><g fill="#0F1115"><ellipse cx="100" cy="45" rx="8" ry="14"/><ellipse cx="148" cy="128" rx="8" ry="14" transform="rotate(120 148 128)"/><ellipse cx="52" cy="128" rx="8" ry="14" transform="rotate(240 52 128)"/></g><text x="100" y="186" text-anchor="middle" font-size="9" ${F} fill="${ink}" letter-spacing="3">SHINOBI // 忍</text>`);
+        case 'onepiece-skull':
+          return svgWrap('0 0 200 200', `<circle cx="100" cy="100" r="88" stroke="#00E5FF" stroke-width="2" stroke-dasharray="4 5"/><path d="M50 45L150 155M150 45L50 155" stroke="${ink}" stroke-width="9" stroke-linecap="round"/><path d="M60 64Q100 28 140 64Q155 100 140 126L128 140H72L60 126Q45 100 60 64Z" fill="#F4F1EA" stroke="#0F1115" stroke-width="4"/><circle cx="78" cy="91" r="13" fill="#0F1115"/><circle cx="122" cy="91" r="13" fill="#0F1115"/><path d="M100 102L90 119H110Z" fill="#E62429"/><path d="M77 135V153M90 135V153M103 135V153M116 135V153" stroke="#0F1115" stroke-width="5"/><path d="M48 32Q100 14 152 32" stroke="#E62429" stroke-width="7"/><text x="100" y="184" text-anchor="middle" font-size="10" ${F} fill="${ink}" letter-spacing="2">GRAND LINE</text>`);
+        case 'db-aura':
+          return svgWrap('0 0 200 200', `${burst(100,100,35,96,24,'#FF8A3D',3)}<path d="M44 144Q25 80 100 24Q175 82 156 144" stroke="#E62429" stroke-width="6"/><circle cx="100" cy="100" r="42" fill="#FF8A3D" fill-opacity=".25" stroke="#FF8A3D" stroke-width="4"/><text x="100" y="108" text-anchor="middle" font-size="35" ${F} fill="#FF8A3D">亀</text><text x="100" y="184" text-anchor="middle" font-size="9" ${F} fill="${ink}" letter-spacing="3">POWER SURGE</text>`);
+        case 'bleach-blade':
+          return svgWrap('0 0 200 200', `<circle cx="100" cy="100" r="88" stroke="${ink}" stroke-opacity=".4" stroke-width="2"/><path d="M40 150L145 38L160 24L174 38L160 52L52 158Z" fill="#F4F1EA" stroke="#E62429" stroke-width="3"/><path d="M35 160L60 135" stroke="#E62429" stroke-width="12" stroke-linecap="round"/><path d="M24 168L48 144M44 178L62 158" stroke="${ink}" stroke-width="4"/><text x="100" y="190" text-anchor="middle" font-size="9" ${F} fill="${ink}" letter-spacing="3">SOUL REAPER</text>`);
+        case 'chainsaw-mark':
+          return svgWrap('0 0 200 200', `<path d="M38 72H148Q170 72 170 94V112Q170 134 148 134H38Z" fill="#E62429" stroke="${ink}" stroke-width="3"/><path d="M48 82L58 124L68 82L78 124L88 82L98 124L108 82L118 124L128 82L138 124L148 82" stroke="#0F1115" stroke-width="5" fill="none"/><circle cx="100" cy="100" r="72" stroke="#E62429" stroke-width="3" stroke-dasharray="8 5"/><text x="100" y="52" text-anchor="middle" font-size="13" ${F} fill="${ink}" letter-spacing="2">DEVIL HUNTER</text><text x="100" y="168" text-anchor="middle" font-size="10" ${F} fill="#E62429" letter-spacing="3">SAWTOOTH</text>`);
+
+        case 'mha-hero':
+          return svgWrap('0 0 200 200', `<path d="M100 18L126 72L184 82L142 122L152 180L100 150L48 180L58 122L16 82L74 72Z" fill="#E62429" fill-opacity=".14" stroke="#E62429" stroke-width="3"/><circle cx="100" cy="100" r="45" stroke="#00E5FF" stroke-width="4"/><path d="M70 104L88 84L100 112L112 84L130 104" stroke="${ink}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><text x="100" y="188" text-anchor="middle" font-size="10" ${F} fill="${ink}" letter-spacing="3">HERO // PLUS ULTRA</text>`);
+        case 'aot-wings':
+          return svgWrap('0 0 200 200', `<path d="M100 92L54 30L78 82L20 60L70 112L36 150L86 130L100 180L114 130L164 150L130 112L180 60L122 82L146 30Z" fill="#F4F1EA" fill-opacity=".15" stroke="#00E5FF" stroke-width="2.5"/><path d="M100 46V164M100 74L60 48M100 74L140 48M100 110L48 94M100 110L152 94" stroke="${ink}" stroke-width="2.5"/><text x="100" y="190" text-anchor="middle" font-size="9" ${F} fill="#00E5FF" letter-spacing="2">FREEDOM // WINGS</text>`);
+        case 'tokyo-ghoul':
+          return svgWrap('0 0 200 200', `<path d="M54 50Q100 20 146 50L132 140Q100 178 68 140Z" fill="#E62429" fill-opacity=".16" stroke="#E62429" stroke-width="3"/><path d="M68 88L92 78L100 108L108 78L132 88L122 116L100 132L78 116Z" fill="${ink}"/><path d="M78 95L92 100M108 100L122 95" stroke="#E62429" stroke-width="4" stroke-linecap="round"/><path d="M82 132L92 144L100 132L108 144L118 132" stroke="${ink}" stroke-width="3" fill="none"/><text x="100" y="188" text-anchor="middle" font-size="10" ${F} fill="#E62429" letter-spacing="3">GHOUL // MASK</text>`);
+        case 'eva-mecha':
+          return svgWrap('0 0 200 200', `<path d="M70 30L100 12L130 30L146 74L130 94L140 150L112 176L100 140L88 176L60 150L70 94L54 74Z" fill="#10B981" fill-opacity=".15" stroke="#10B981" stroke-width="3.5"/><path d="M72 66L88 52L100 76L112 52L128 66L118 100L100 116L82 100Z" fill="#E62429" stroke="${ink}" stroke-width="2.5"/><path d="M100 22V50M54 74L26 88M146 74L174 88M60 150L34 168M140 150L166 168" stroke="${ink}" stroke-width="3"/><text x="100" y="190" text-anchor="middle" font-size="10" ${F} fill="#10B981" letter-spacing="3">MECHA // UNIT</text>`);
+
+        case 'jjk-shrine':
+        default:
+          return svgWrap('0 0 200 200', `
+            <circle cx="100" cy="92" r="60" fill="#E62429" fill-opacity=".2" stroke="#E62429" stroke-width="1.2"/>
+            <path d="M26 100L170 176M60 30L176 128M16 70L136 176M120 20L186 78" stroke="${ink}" stroke-opacity=".5" stroke-width="1.2" stroke-linecap="round"/>
+            <g fill="#E62429"><path d="M18 56Q100 80 182 56L174 70Q100 92 26 70Z"/><rect x="46" y="94" width="108" height="8"/><rect x="58" y="74" width="11" height="96"/><rect x="131" y="74" width="11" height="96"/></g>
+            <rect x="94" y="80" width="12" height="14" stroke="${ink}" stroke-width="1.5"/><rect x="53" y="166" width="21" height="6" fill="${ink}"/><rect x="126" y="166" width="21" height="6" fill="${ink}"/>`);
+      }
+    }
+
+    function renderGarmentVisual(category, garmentColor, artworkType, side = 'front') {
+      const isLight = garmentColor === '#F4F1EA';
+      const strokeColor = isLight ? '#0F1115' : '#3A3F4B';
+      const artHtml = getArtworkSVG(artworkType, isLight);
+
+      if (category === 'phone-cases' || artworkType === 'phone-case' || (category === 'accessories' && ['kv-spider-case', 'kv-anime-case'].includes((window.__renderProductId || '')))) {
+        return `
+          <div class="relative w-full h-full flex items-center justify-center">
+            <div class="relative w-32 h-56 rounded-[2rem] bg-gradient-to-br from-concrete to-midnight border-[5px] border-manga/25 shadow-2xl p-3 overflow-hidden">
+              <div class="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-2 rounded-full bg-midnight/90 z-10"></div>
+              <div class="absolute inset-3 rounded-[1.45rem] border border-manga/20 bg-midnight/90 flex items-center justify-center p-3 overflow-hidden">
+                <div class="w-full h-full flex items-center justify-center">${artHtml}</div>
+              </div>
+            </div>
+          </div>`;
+      }
+
+
+      if (category === 'hoodies') {
+        return `
+          <div class="relative w-full h-full flex items-center justify-center">
+            <svg viewBox="0 0 240 240" class="w-52 h-52 drop-shadow-2xl pointer-events-none">
+              <path d="M72 48 L36 74 L20 148 L44 156 L58 96 L58 206 L182 206 L182 96 L196 156 L220 148 L204 74 L168 48 C154 64 86 64 72 48 Z" fill="${garmentColor}" stroke="${strokeColor}" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M84 48 C84 22 156 22 156 48 C144 62 96 62 84 48 Z" fill="${garmentColor}" stroke="${strokeColor}" stroke-width="2.5"/>
+              ${side === 'front' ? `<path d="M82 146 L158 146 L166 196 L74 196 Z" fill="none" stroke="${strokeColor}" stroke-width="1.5" opacity="0.6"/>` : ''}
+            </svg>
+            ${side === 'front'
+              ? `<div class="absolute top-[38%] right-[35%] w-9 h-9">${artHtml}</div>`
+              : `<div class="absolute top-[33%] w-24 h-28">${artHtml}</div>`
+            }
+          </div>`;
+      }
+
+      if (category === 'tees') {
+        return `
+          <div class="relative w-full h-full flex items-center justify-center">
+            <svg viewBox="0 0 240 240" class="w-52 h-52 drop-shadow-2xl pointer-events-none">
+              <path d="M76 44 L30 72 L46 106 L66 94 L66 206 L174 206 L174 94 L194 106 L210 72 L164 44 C150 60 90 60 76 44 Z" fill="${garmentColor}" stroke="${strokeColor}" stroke-width="2.5" stroke-linejoin="round"/>
+            </svg>
+            ${side === 'front'
+              ? `<div class="absolute top-[38%] left-0 right-0 mx-auto w-20 h-8 flex items-center justify-center">${artHtml}</div>`
+              : `<div class="absolute top-[33%] w-24 h-28">${artHtml}</div>`
+            }
+          </div>`;
+      }
+
+      if (artworkType === 'crest' || artworkType === 'ds-hinokami') {
+        return `
+          <div class="relative w-full h-full flex items-center justify-center">
+            <div class="w-36 h-36 rounded-2xl bg-midnight/80 border border-manga/15 p-4 flex items-center justify-center shadow-2xl">
+              ${artHtml}
+            </div>
+          </div>`;
+      }
+
+      return `
+        <div class="relative w-full h-full flex items-center justify-center">
+          <div class="w-36 h-36 rounded-2xl bg-gradient-to-tr from-crimson/25 via-cyan/25 to-manga/20 border border-cyan/40 p-4 flex items-center justify-center shadow-2xl">
+            <div class="w-24 h-24 pointer-events-none">${artHtml}</div>
+          </div>
+        </div>`;
+    }
+
+    // 4. STOREFRONT RENDERING, FILTERING & LIVE SEARCH
+    function handleSearch(query) {
+      state.searchQuery = query.trim().toLowerCase();
+      renderProducts();
+    }
+
+    function matchesSearch(product) {
+      if (!state.searchQuery) return true;
+      const q = state.searchQuery;
+      return (
+        product.name.toLowerCase().includes(q) ||
+        product.subtitle.toLowerCase().includes(q) ||
+        product.category.toLowerCase().includes(q) ||
+        product.universe.toLowerCase().includes(q)
+      );
+    }
+
+    function renderProducts() {
+      const spiderGrid = document.getElementById('spider-grid');
+      const animeGrid = document.getElementById('anime-grid');
+
+      const spiderProducts = PRODUCTS.filter(p => p.universe === 'spider' && (state.filter === 'all' || p.category === state.filter) && matchesSearch(p));
+      const animeProducts = PRODUCTS.filter(p => p.universe === 'anime' && (state.filter === 'all' || p.category === state.filter) && matchesSearch(p));
+
+      if (spiderGrid) {
+        spiderGrid.innerHTML = spiderProducts.length
+          ? spiderProducts.map((product, idx) => buildProductCard(product, idx)).join('')
+          : `<div class="col-span-full py-12 text-center rounded-3xl bg-concrete/20 border border-manga/10 text-xs text-manga/60">No Spider-Verse products match "${state.searchQuery}". <button onclick="resetFilters()" class="underline text-cyan ml-1">Clear filters</button></div>`;
+      }
+      if (animeGrid) {
+        animeGrid.innerHTML = animeProducts.length
+          ? animeProducts.map((product, idx) => buildProductCard(product, idx)).join('')
+          : `<div class="col-span-full py-12 text-center rounded-3xl bg-concrete/20 border border-manga/10 text-xs text-manga/60">No Anime Archive products match "${state.searchQuery}". <button onclick="resetFilters()" class="underline text-cyan ml-1">Clear search</button></div>`;
+      }
+      bindFluidCardTilt();
+    }
+
+    function resetFilters() {
+      state.searchQuery = '';
+      const dInput = document.getElementById('shop-search-input');
+      const mInput = document.getElementById('shop-search-mobile');
+      if (dInput) dInput.value = '';
+      if (mInput) mInput.value = '';
+      filterProducts('all');
+    }
+
+    const KV_PHOTO_POSITIONS = ['0%', '33.333%', '66.666%', '100%'];
+    function photoPositionFor(product) {
+      const key = (product.artworkType || product.category || '').toLowerCase();
+      if (/naruto|onepiece|chainsaw|aot|eva/.test(key)) return '100%';
+      if (/ds-|bleach|mha|tokyo|ghoul/.test(key)) return '66.666%';
+      if (/jjk|db-|void/.test(key)) return '33.333%';
+      return '0%';
+    }
+
+    function buildProductVisual(product, side) {
+      const artType = side === 'back' && product.backArtworkType ? product.backArtworkType : product.artworkType;
+      const cat = product.category;
+      const name = product.name.toLowerCase();
+
+      // Stickers — stacked die-cut look
+      if (name.includes('sticker') || (cat === 'accessories' && product.price < 10)) {
+        return `
+          <div class="kv-product-stage" onclick="openQuickView('${product.id}')">
+            <span class="kv-stage-orb orb-a"></span>
+            <span class="kv-stage-orb orb-b"></span>
+            <div class="kv-sticker-stack">
+              <div class="sticker">${getArtworkSVG(artType, false)}</div>
+              <div class="sticker">${getArtworkSVG(product.artworkType === 'ds-hinokami' ? 'crest' : artType, false)}</div>
+            </div>
+          </div>`;
+      }
+
+      // Phone cases
+      if (cat === 'phone-cases' || name.includes('phone case') || name.includes('case')) {
+        return `
+          <div class="kv-product-stage" onclick="openQuickView('${product.id}')">
+            <span class="kv-stage-orb orb-a"></span>
+            <div class="kv-phone-case">
+              <div class="kv-phone-case-inner">${getArtworkSVG(artType, false)}</div>
+            </div>
+          </div>`;
+      }
+
+      // Caps / dad hats
+      if (name.includes('cap') || name.includes('hat')) {
+        return `
+          <div class="kv-product-stage" onclick="openQuickView('${product.id}')">
+            <span class="kv-stage-orb orb-b"></span>
+            <div class="kv-accessory-frame kv-cap-frame">
+              <div class="w-full h-full flex items-center justify-center p-2">${getArtworkSVG(artType, false)}</div>
+            </div>
+          </div>`;
+      }
+
+      // Totes / bags
+      if (name.includes('tote') || name.includes('bag')) {
+        return `
+          <div class="kv-product-stage" onclick="openQuickView('${product.id}')">
+            <span class="kv-stage-orb orb-a"></span>
+            <div class="kv-accessory-frame" style="width:130px;height:150px;border-radius:0.75rem 0.75rem 1.25rem 1.25rem;">
+              <div class="w-full h-full flex items-center justify-center">${getArtworkSVG(artType, false)}</div>
+            </div>
+          </div>`;
+      }
+
+      // Desk mats / large flat accessories
+      if (name.includes('desk') || name.includes('mat')) {
+        return `
+          <div class="kv-product-stage" onclick="openQuickView('${product.id}')">
+            <span class="kv-stage-orb orb-b"></span>
+            <div class="kv-accessory-frame" style="width:170px;height:100px;border-radius:0.85rem;">
+              <div class="w-full h-full flex items-center justify-center p-2">${getArtworkSVG(artType, false)}</div>
+            </div>
+          </div>`;
+      }
+
+      // Generic accessories fallback
+      if (cat === 'accessories') {
+        return `
+          <div class="kv-product-stage" onclick="openQuickView('${product.id}')">
+            <span class="kv-stage-orb orb-a"></span>
+            <div class="kv-accessory-frame">
+              <div class="w-full h-full flex items-center justify-center">${getArtworkSVG(artType, false)}</div>
+            </div>
+          </div>`;
+      }
+
+      // Hoodies, tees, crewnecks — full garment mock
+      return `
+        <div class="kv-product-stage" onclick="openQuickView('${product.id}')">
+          <span class="kv-stage-orb orb-a"></span>
+          <span class="kv-stage-orb orb-b"></span>
+          <div class="garment-wrap">
+            ${renderGarmentVisual(cat === 'hoodies' ? 'hoodies' : 'tees', product.garmentColor, artType, side)}
+          </div>
+        </div>`;
+    }
+
+    function buildProductCard(product, idx = 0) {
+      const side = state.productViews[product.id] || 'front';
+      const selectedSize = state.selectedSizes[product.id] || product.defaultSize;
+      const savings = (product.amazonPrice - product.price).toFixed(2);
+      return `
+        <article class="product-card-fluid group rounded-3xl bg-concrete/25 border border-manga/10 hover:border-cyan/40 flex flex-col justify-between overflow-hidden" data-card-index="${idx}">
+          <!-- Top Product Stage — unique visual per product -->
+          <div class="relative h-64 bg-midnight/60 border-b border-manga/10 p-5 flex items-center justify-center overflow-hidden">
+            <!-- Savings Pill -->
+            <span class="absolute top-3.5 left-3.5 z-10 badge-pop px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[10px] font-display font-semibold tracking-wider uppercase">
+              Save $${savings} vs Amazon
+            </span>
+
+            <!-- Collection / Status Badge -->
+            <span class="absolute top-3.5 right-3.5 z-10 badge-pop px-2.5 py-0.5 rounded-full bg-concrete/85 text-manga/75 text-[10px] font-display uppercase tracking-wider" style="animation-delay:80ms">
+              ${product.badge}
+            </span>
+
+            ${buildProductVisual(product, side)}
+
+            <!-- Front / Back Switcher -->
+            ${product.hasBackPrint ? `
+              <div class="absolute bottom-3 left-3.5 z-10 flex items-center gap-1 bg-midnight/90 p-0.5 rounded-full border border-manga/15">
+                <button onclick="toggleProductSide('${product.id}', 'front')" class="px-2.5 py-0.5 rounded-full text-[10px] font-display uppercase ${side === 'front' ? 'bg-manga text-midnight font-bold' : 'text-manga/60'}">Front</button>
+                <button onclick="toggleProductSide('${product.id}', 'back')" class="px-2.5 py-0.5 rounded-full text-[10px] font-display uppercase ${side === 'back' ? 'bg-cyan text-midnight font-bold' : 'text-manga/60'}">Back</button>
+              </div>
+            ` : ''}
+
+            <button onclick="openQuickView('${product.id}')" class="absolute bottom-3 right-3.5 z-10 px-3 py-1 rounded-full bg-concrete/90 text-[10px] font-display uppercase tracking-wider text-manga/85 hover:text-cyan transition-colors">
+              Details
+            </button>
+          </div>
+
+          <!-- Product Info & Controls -->
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-center justify-between text-[11px] text-manga/55 mb-1">
+                <span class="text-amber-400">★ <span class="text-manga/60">${product.rating}</span></span>
+                <span class="text-emerald-400 font-display uppercase text-[10px] tracking-wider">In Stock</span>
+              </div>
+              <h3 onclick="openQuickView('${product.id}')" class="cursor-pointer font-display font-bold text-base text-manga leading-snug hover:text-cyan transition-colors">${product.name}</h3>
+              <p class="text-xs text-manga/55 mt-1">${product.subtitle}</p>
+              <p class="text-[10px] leading-relaxed text-manga/40 mt-2">${product.fabricDetails}</p>
+              <div class="detail-line flex flex-wrap gap-2 text-[9px] font-display tracking-wider uppercase text-manga/45"><span>Designed for daily wear</span><span class="text-cyan/60">•</span><span>Drop 01</span></div>
+            </div>
+
+            <div class="space-y-3 pt-2 border-t border-manga/10">
+              <!-- Price Row -->
+              <div class="flex items-baseline justify-between">
+                <div class="flex items-baseline gap-2">
+                  <span class="font-display font-bold text-lg text-manga">$${product.price.toFixed(2)}</span>
+                  <span class="text-xs text-manga/40 line-through">$${product.amazonPrice.toFixed(2)}</span>
+                </div>
+                ${!['accessories', 'phone-cases'].includes(product.category) ? `<button onclick="openSizeGuide()" class="text-[10px] text-manga/50 hover:text-cyan underline">Size Guide</button>` : ''}
+              </div>
+
+              <!-- Size Selector -->
+              <div class="flex items-center gap-1.5">
+                ${product.sizes.map(sz => `
+                  <button onclick="selectProductSize('${product.id}', '${sz}')" class="flex-1 py-1.5 rounded-lg text-[11px] font-display font-semibold transition-colors ${selectedSize === sz ? 'bg-manga text-midnight' : 'bg-midnight/80 text-manga/70 border border-manga/10 hover:border-manga/30'}">
+                    ${sz}
+                  </button>
+                `).join('')}
+              </div>
+
+              <!-- Add to Bag CTA -->
+              <button onclick="addToCart('${product.id}')" class="w-full py-2.5 rounded-full bg-crimson text-manga font-display font-semibold text-xs tracking-wider uppercase hover:bg-crimson/90 transition-all active:scale-95">
+                Add to Bag — $${product.price.toFixed(2)}
+              </button>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function filterProducts(category) {
+      state.filter = category;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        const isMatch = btn.getAttribute('data-filter') === category;
+        btn.className = isMatch
+          ? 'filter-btn px-4 py-2 rounded-full text-xs font-display font-semibold tracking-wider uppercase bg-manga text-midnight transition-all'
+          : 'filter-btn px-4 py-2 rounded-full text-xs font-display font-semibold tracking-wider uppercase bg-concrete/60 text-manga/75 hover:text-manga transition-all';
+      });
+      renderProducts();
+    }
+
+    function toggleProductSide(productId, side) {
+      state.productViews[productId] = side;
+      renderProducts();
+    }
+
+    function selectProductSize(productId, size) {
+      state.selectedSizes[productId] = size;
+      renderProducts();
+    }
+
+    // 5. SHOPPER PRODUCT DETAIL MODAL
+    function openQuickView(productId) {
+      const p = PRODUCTS.find(item => item.id === productId);
+      if (!p) return;
+      const modal = document.getElementById('quickview-modal');
+      const card = document.getElementById('quickview-card');
+      const body = document.getElementById('quickview-body');
+      const side = state.productViews[p.id] || 'front';
+      const selectedSize = state.selectedSizes[p.id] || p.defaultSize;
+      const savings = (p.amazonPrice - p.price).toFixed(2);
+
+      if (body) {
+        body.innerHTML = `
+          <div class="bg-midnight p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-manga/10 gap-4">
+            <div class="w-56 h-56 transition-transform duration-500 hover:scale-105">
+              ${renderGarmentVisual(p.category, p.garmentColor, side === 'back' && p.backArtworkType ? p.backArtworkType : p.artworkType, side)}
+            </div>
+            ${p.hasBackPrint ? `
+              <div class="flex items-center gap-1.5 bg-concrete/70 p-1 rounded-full border border-manga/15">
+                <button onclick="toggleProductSide('${p.id}', 'front'); openQuickView('${p.id}');" class="px-3 py-1 rounded-full text-[10px] font-display uppercase ${side === 'front' ? 'bg-manga text-midnight font-bold' : 'text-manga/70'}">Front View</button>
+                <button onclick="toggleProductSide('${p.id}', 'back'); openQuickView('${p.id}');" class="px-3 py-1 rounded-full text-[10px] font-display uppercase ${side === 'back' ? 'bg-cyan text-midnight font-bold' : 'text-manga/70'}">Back View</button>
+              </div>
+            ` : ''}
+          </div>
+          <div class="p-6 sm:p-8 flex flex-col justify-between space-y-5">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-display uppercase tracking-widest text-cyan">${p.badge}</span>
+                <span class="text-xs text-amber-400">★ <span class="text-manga/70">${p.rating}</span></span>
+              </div>
+              <h3 class="font-display font-bold text-xl text-manga mt-1">${p.name}</h3>
+              <p class="text-xs text-manga/65 mt-2 leading-relaxed">${p.fabricDetails}</p>
+
+              <div class="mt-4 p-3.5 rounded-2xl bg-midnight/80 border border-manga/10 space-y-1.5 text-xs">
+                <div class="flex justify-between"><span class="text-manga/50">Fit:</span><span class="text-manga font-medium">${p.category === 'phone-cases' ? 'Protective Case' : 'Relaxed Streetwear Drape'}</span></div>
+                <div class="flex justify-between"><span class="text-manga/50">Bonus Included:</span><span class="text-cyan font-medium">Free Sticker</span></div>
+                <div class="flex justify-between"><span class="text-manga/50">Delivery:</span><span class="text-emerald-400 font-medium">Ships in 3–5 Business Days</span></div>
+              </div>
+
+              <div class="mt-4">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-[11px] font-display uppercase tracking-wider text-manga/60">Select Size</span>
+                  ${!['accessories', 'phone-cases'].includes(p.category) ? `<button onclick="closeQuickView(); openSizeGuide();" class="text-[11px] text-cyan underline">Size Guide</button>` : ''}
+                </div>
+                <div class="flex items-center gap-1.5">
+                  ${p.sizes.map(sz => `
+                    <button onclick="selectProductSize('${p.id}', '${sz}'); openQuickView('${p.id}');" class="flex-1 py-1.5 rounded-lg text-xs font-display font-semibold transition-colors ${selectedSize === sz ? 'bg-manga text-midnight' : 'bg-midnight/80 text-manga/75 border border-manga/10 hover:border-manga/30'}">
+                      ${sz}
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-2.5">
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="font-display font-bold text-2xl text-manga">$${p.price.toFixed(2)}</span>
+                  <span class="text-xs text-manga/40 line-through ml-2">$${p.amazonPrice.toFixed(2)}</span>
+                </div>
+                <span class="text-xs text-emerald-400 font-medium">You save $${savings}</span>
+              </div>
+              <button onclick="addToCart('${p.id}'); closeQuickView();" class="w-full py-3 rounded-full bg-crimson text-manga font-display font-bold text-xs tracking-wider uppercase hover:bg-crimson/90">
+                Add to Bag (${selectedSize}) — $${p.price.toFixed(2)}
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      if (modal && card) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        requestAnimationFrame(() => {
+          modal.classList.remove('opacity-0');
+          card.classList.remove('scale-95', 'opacity-0');
+          card.classList.add('scale-100', 'opacity-100');
+        });
+      }
+    }
+
+    function closeQuickView() {
+      const modal = document.getElementById('quickview-modal');
+      const card = document.getElementById('quickview-card');
+      if (modal && card) {
+        modal.classList.add('opacity-0');
+        card.classList.remove('scale-100', 'opacity-100');
+        card.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        }, 280);
+      }
+    }
+
+    // 6. SIZE GUIDE MODAL
+    function openSizeGuide() {
+      const modal = document.getElementById('sizeguide-modal');
+      const card = document.getElementById('sizeguide-card');
+      if (modal && card) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        requestAnimationFrame(() => {
+          modal.classList.remove('opacity-0');
+          card.classList.remove('scale-95', 'opacity-0');
+          card.classList.add('scale-100', 'opacity-100');
+        });
+      }
+    }
+
+    function closeSizeGuide() {
+      const modal = document.getElementById('sizeguide-modal');
+      const card = document.getElementById('sizeguide-card');
+      if (modal && card) {
+        modal.classList.add('opacity-0');
+        card.classList.remove('scale-100', 'opacity-100');
+        card.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        }, 280);
+      }
+    }
+
+    // 7. SHOPPING BAG, FREE SHIPPING BAR & CHECKOUT
+    function addToCart(productId) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product) return;
+      const size = state.selectedSizes[productId] || product.defaultSize;
+      const existing = state.cart.find(item => item.id === productId && item.size === size);
+
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        state.cart.push({ id: productId, size, qty: 1 });
+      }
+      updateCartUI();
+      toggleCart(true);
+    }
+
+    function updateCartQty(index, delta) {
+      if (!state.cart[index]) return;
+      state.cart[index].qty += delta;
+      if (state.cart[index].qty <= 0) {
+        state.cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const countBadge = document.getElementById('cart-count-badge');
+      const container = document.getElementById('cart-items-container');
+      const subtotalEl = document.getElementById('cart-subtotal');
+      const savingsEl = document.getElementById('cart-savings-total');
+      const shipText = document.getElementById('free-shipping-text');
+      const shipBar = document.getElementById('free-shipping-bar');
+
+      const totalQty = state.cart.reduce((sum, item) => sum + item.qty, 0);
+      if (countBadge) countBadge.textContent = totalQty;
+
+      let subtotal = 0;
+      let totalSavings = 0;
+
+      if (container) {
+        if (state.cart.length === 0) {
+          container.innerHTML = `
+            <div class="h-full flex flex-col items-center justify-center text-center py-12 space-y-2">
+              <p class="font-display font-semibold text-sm text-manga/75">Your shopping bag is empty</p>
+              <p class="text-xs text-manga/45 max-w-xs">Add Spider-Verse or Anime Archive pieces to unlock a free sticker.</p>
+            </div>`;
+        } else {
+          container.innerHTML = state.cart.map((item, idx) => {
+            const p = PRODUCTS.find(prod => prod.id === item.id);
+            if (!p) return '';
+            subtotal += p.price * item.qty;
+            totalSavings += (p.amazonPrice - p.price) * item.qty;
+            return `
+              <div class="p-3.5 rounded-2xl bg-concrete/35 border border-manga/10 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-12 rounded-xl bg-midnight p-1.5 shrink-0">
+                    ${getArtworkSVG(p.artworkType, false)}
+                  </div>
+                  <div>
+                    <p class="font-display font-semibold text-xs text-manga">${p.name}</p>
+                    <p class="text-[11px] text-manga/50 mt-0.5">Size: ${item.size} • $${p.price.toFixed(2)}</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button onclick="updateCartQty(${idx}, -1)" class="w-6 h-6 rounded-full bg-midnight text-manga/80 text-xs hover:text-crimson">−</button>
+                  <span class="text-xs font-display font-bold w-4 text-center">${item.qty}</span>
+                  <button onclick="updateCartQty(${idx}, 1)" class="w-6 h-6 rounded-full bg-midnight text-manga/80 text-xs hover:text-cyan">+</button>
+                </div>
+              </div>`;
+          }).join('');
+        }
+      }
+
+      if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+      if (savingsEl) savingsEl.textContent = `$${totalSavings.toFixed(2)}`;
+
+      // Free shipping threshold ($50)
+      const threshold = 50;
+      const pct = Math.min(100, (subtotal / threshold) * 100);
+      if (shipBar) shipBar.style.width = `${pct}%`;
+      if (shipText) {
+        if (subtotal >= threshold) {
+          shipText.innerHTML = `You unlocked <span class="text-emerald-400 font-semibold">FREE Express Shipping!</span>`;
+        } else {
+          const rem = (threshold - subtotal).toFixed(2);
+          shipText.innerHTML = `Add <span class="text-manga font-semibold">$${rem}</span> more for <span class="text-cyan font-semibold">FREE Express Shipping</span>`;
+        }
+      }
+      saveCart();
+    }
+
+    function toggleCart(open) {
+      const drawer = document.getElementById('cart-drawer');
+      const backdrop = document.getElementById('cart-backdrop');
+      const panel = document.getElementById('cart-panel');
+      if (!drawer || !backdrop || !panel) return;
+
+      if (open) {
+        drawer.classList.remove('hidden', 'pointer-events-none');
+        requestAnimationFrame(() => {
+          backdrop.classList.remove('opacity-0');
+          panel.classList.remove('translate-x-full');
+        });
+      } else {
+        backdrop.classList.add('opacity-0');
+        panel.classList.add('translate-x-full');
+        drawer.classList.add('pointer-events-none');
+        setTimeout(() => {
+          drawer.classList.add('hidden');
+        }, 380);
+      }
+    }
+
+    function completeCheckout() {
+      if (state.cart.length === 0) {
+        showToast('Add an item to your bag first');
+        return;
+      }
+      saveCart();
+      window.location.href = 'checkout.html';
+    }
+
+    // 8. TOAST HELPER
+    let toastTimer = null;
+    function showToast(msg) {
+      const banner = document.getElementById('toast-banner');
+      const text = document.getElementById('toast-message');
+      if (!banner || !text) return;
+      text.textContent = msg;
+      banner.classList.remove('hidden');
+      banner.classList.add('flex');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        banner.classList.add('hidden');
+        banner.classList.remove('flex');
+      }, 3400);
+    }
+
+    // 9. FLUID 3D CARD TILT & SCROLL PROGRESS
+    function bindFluidCardTilt() {
+      document.querySelectorAll('.product-card-fluid').forEach(card => {
+        card.onmousemove = (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = `perspective(900px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg) translateY(-4px)`;
+        };
+        card.onmouseleave = () => {
+          card.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) translateY(0px)';
+        };
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      const bar = document.getElementById('scroll-progress-bar');
+      if (!bar) return;
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+      bar.style.width = `${pct}%`;
+    }, { passive: true });
+
+    // Initialize Storefront on Load
+    window.addEventListener('DOMContentLoaded', () => {
+      const hero = document.getElementById('hero-art');
+      if (hero) hero.innerHTML = getArtworkSVG('crest');
+      renderProducts();
+      updateCartUI();
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+    });
+  </script>
+  <script src="assets/kumo-logos.js" defer></script>
+  <script src="assets/kumo-reboot.js" defer></script>
+  <script src="assets/kumo-verse-motion.js" defer></script>
+</body>
+</html>
