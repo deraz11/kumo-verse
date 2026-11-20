@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" fill="none" role="img" aria-label="KUMO VERSE stamp">
+  <title>K/V Field Notes Stamp</title>
+  <rect x="2" y="2" width="236" height="96" rx="8" stroke="#F4F1EA" stroke-opacity="0.3" stroke-width="2"/>
+  <rect x="10" y="10" width="220" height="80" rx="4" stroke="#E62429" stroke-opacity="0.5" stroke-width="1"/>
+  <text x="24" y="42" font-family="Space Grotesk, Arial, sans-serif" font-weight="700" font-size="14" letter-spacing="3" fill="#00E5FF">K/V FIELD NOTES</text>
+  <text x="24" y="68" font-family="Space Grotesk, Arial Black, sans-serif" font-weight="700" font-size="22" letter-spacing="2" fill="#F4F1EA">DROP 001</text>
+  <text x="210" y="68" text-anchor="end" font-family="Space Grotesk, Arial, sans-serif" font-weight="600" font-size="12" fill="#E62429">クモ</text>
+</svg>

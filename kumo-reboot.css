@@ -1,0 +1,863 @@
+/* ==========================================================================
+   KUMO // VERSE — Reboot Styles
+   Unique product visuals + fluid motion system
+   ========================================================================== */
+
+/* ---------- Hero ---------- */
+.kv-hero {
+  position: relative;
+  min-height: min(92vh, 920px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(230, 36, 41, 0.12), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 20% 70%, rgba(0, 229, 255, 0.08), transparent 50%),
+    #0F1115;
+}
+
+.kv-hero-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 0;
+}
+
+.kv-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 4.5rem 1.25rem 3rem;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .kv-hero-inner {
+    grid-template-columns: 1fr;
+    padding-top: 3rem;
+    gap: 2rem;
+  }
+}
+
+.kv-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 234, 0.55);
+  margin-bottom: 1.1rem;
+  animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.kv-kicker span {
+  display: inline-block;
+  width: 1.6rem;
+  height: 2px;
+  background: linear-gradient(90deg, #E62429, #00E5FF);
+  border-radius: 2px;
+}
+
+.kv-hero-copy h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: #F4F1EA;
+  margin: 0 0 1.25rem;
+  animation: fadeInUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+.kv-hero-copy h1 em {
+  font-style: normal;
+  color: #E62429;
+}
+
+.kv-hero-copy h1 b {
+  font-weight: 700;
+  background: linear-gradient(105deg, #00E5FF 0%, #F4F1EA 55%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.kv-hero-lede {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(244, 241, 234, 0.62);
+  max-width: 32rem;
+  margin-bottom: 1.75rem;
+  animation: fadeInUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.16s both;
+}
+
+.kv-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-bottom: 2.25rem;
+  animation: fadeInUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both;
+}
+
+.kv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.9rem 1.5rem;
+  border-radius: 9999px;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, background 0.25s ease;
+}
+
+.kv-btn-red {
+  background: #E62429;
+  color: #F4F1EA;
+  box-shadow: 0 0 0 0 rgba(230, 36, 41, 0.4);
+}
+
+.kv-btn-red:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px rgba(230, 36, 41, 0.55);
+  background: #ff2a30;
+}
+
+.kv-text-link {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 234, 0.7);
+  transition: color 0.2s ease;
+}
+
+.kv-text-link:hover {
+  color: #00E5FF;
+}
+
+.kv-hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem 2.25rem;
+  animation: fadeInUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.32s both;
+}
+
+.kv-hero-stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.kv-hero-stats strong {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #F4F1EA;
+  letter-spacing: -0.01em;
+}
+
+.kv-hero-stats strong span {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(244, 241, 234, 0.45);
+  margin-left: 0.15rem;
+}
+
+.kv-hero-stats small {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 234, 0.4);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+/* Hero visual stage */
+.kv-hero-visual {
+  position: relative;
+  aspect-ratio: 1 / 1.05;
+  max-width: 440px;
+  margin: 0 auto;
+  width: 100%;
+  animation: fadeInScale 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.kv-photo-main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.65rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(230, 36, 41, 0.22), transparent 55%),
+    linear-gradient(145deg, rgba(42, 46, 55, 0.95), rgba(15, 17, 21, 0.98));
+  border: 1px solid rgba(244, 241, 234, 0.08);
+  box-shadow:
+    inset 0 0 0 1px rgba(244, 241, 234, 0.03),
+    0 30px 80px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kv-photo-main::before,
+.kv-photo-main::after {
+  content: "";
+  position: absolute;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-color: rgba(0, 229, 255, 0.55);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.kv-photo-main::before {
+  top: 1rem;
+  left: 1rem;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+
+.kv-photo-main::after {
+  bottom: 1rem;
+  right: 1rem;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
+
+/* Animated SVG stage inside hero */
+.kv-hero-stage {
+  position: relative;
+  width: 78%;
+  height: 78%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: heroFloat 6s ease-in-out infinite;
+}
+
+.kv-hero-stage .garment-wrap {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.45));
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-12px) rotate(1.2deg); }
+}
+
+.kv-photo-stamp {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.4rem;
+  z-index: 4;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  line-height: 1.25;
+  color: rgba(244, 241, 234, 0.55);
+  text-align: right;
+  writing-mode: horizontal-tb;
+  animation: fadeInStamp 1s ease 0.4s both;
+}
+
+.kv-photo-stamp span {
+  display: block;
+  font-weight: 500;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  color: rgba(0, 229, 255, 0.7);
+  margin-top: 0.15rem;
+}
+
+.kv-photo-caption {
+  position: absolute;
+  bottom: 1.35rem;
+  left: 1.35rem;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  animation: fadeInStamp 1s ease 0.55s both;
+}
+
+.kv-photo-caption span {
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 234, 0.45);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.kv-photo-caption b {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #F4F1EA;
+  letter-spacing: 0.06em;
+}
+
+.kv-photo-index {
+  position: absolute;
+  bottom: 1.4rem;
+  right: 1.5rem;
+  z-index: 4;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(244, 241, 234, 0.4);
+  letter-spacing: 0.08em;
+  animation: fadeInStamp 1s ease 0.7s both;
+}
+
+.kv-photo-index i {
+  font-style: normal;
+  color: rgba(0, 229, 255, 0.6);
+  margin: 0 0.2rem;
+}
+
+@keyframes fadeInStamp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Marquee */
+.kv-marquee {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  border-top: 1px solid rgba(244, 241, 234, 0.08);
+  border-bottom: 1px solid rgba(244, 241, 234, 0.08);
+  background: rgba(15, 17, 21, 0.85);
+  padding: 0.7rem 0;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.kv-marquee > div {
+  display: flex;
+  width: max-content;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 234, 0.35);
+  animation: marqueeScroll 28s linear infinite;
+  white-space: nowrap;
+}
+
+.kv-marquee i {
+  font-style: normal;
+  color: #E62429;
+  margin: 0 1.1rem;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ---------- Product card unique visuals ---------- */
+.kv-product-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.product-card-fluid:hover .kv-product-stage {
+  transform: scale(1.04);
+}
+
+.kv-product-stage .garment-wrap {
+  width: 85%;
+  height: 85%;
+  max-width: 200px;
+  max-height: 200px;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.4));
+  transition: filter 0.35s ease;
+}
+
+.product-card-fluid:hover .kv-product-stage .garment-wrap {
+  filter: drop-shadow(0 16px 36px rgba(0, 229, 255, 0.12));
+}
+
+/* Glow ring behind product */
+.kv-product-stage::before {
+  content: "";
+  position: absolute;
+  width: 55%;
+  height: 55%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.12), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.product-card-fluid:hover .kv-product-stage::before {
+  opacity: 1;
+}
+
+/* ---------- Staggered product-card fade-in ---------- */
+.product-card-fluid {
+  opacity: 0;
+  transform: translateY(28px) scale(0.97);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease,
+    box-shadow 0.35s ease;
+  will-change: opacity, transform;
+}
+
+.product-card-fluid.is-in {
+  animation: cardStaggerIn 0.72s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes cardStaggerIn {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Floating art accent on cards */
+@keyframes artPulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+
+.kv-art-accent {
+  animation: artPulse 4s ease-in-out infinite;
+}
+
+/* ---------- Card hover micro-motion ---------- */
+.product-card-fluid:hover {
+  border-color: rgba(0, 229, 255, 0.38) !important;
+  box-shadow:
+    0 20px 40px -15px rgba(0, 0, 0, 0.75),
+    0 0 24px -6px rgba(0, 229, 255, 0.12);
+}
+
+/* ---------- Scroll-triggered reveals ---------- */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Directional variants */
+.reveal-on-scroll.reveal-left {
+  transform: translateX(-36px);
+}
+.reveal-on-scroll.reveal-right {
+  transform: translateX(36px);
+}
+.reveal-on-scroll.reveal-scale {
+  transform: scale(0.94);
+}
+.reveal-on-scroll.reveal-left.is-visible,
+.reveal-on-scroll.reveal-right.is-visible,
+.reveal-on-scroll.reveal-scale.is-visible {
+  transform: none;
+}
+
+/* Staggered children inside a revealed section */
+.reveal-child {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-on-scroll.is-visible .reveal-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Auto-stagger common content blocks when parent is visible */
+.reveal-on-scroll.is-visible .editorial-panel,
+.reveal-on-scroll.is-visible .faq-item {
+  animation: revealChildIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-on-scroll.is-visible .editorial-panel:nth-child(1) { animation-delay: 0.08s; }
+.reveal-on-scroll.is-visible .editorial-panel:nth-child(2) { animation-delay: 0.18s; }
+.reveal-on-scroll.is-visible .editorial-panel:nth-child(3) { animation-delay: 0.28s; }
+
+.reveal-on-scroll.is-visible .faq-item:nth-child(1) { animation-delay: 0.06s; }
+.reveal-on-scroll.is-visible .faq-item:nth-child(2) { animation-delay: 0.14s; }
+.reveal-on-scroll.is-visible .faq-item:nth-child(3) { animation-delay: 0.22s; }
+.reveal-on-scroll.is-visible .faq-item:nth-child(4) { animation-delay: 0.30s; }
+.reveal-on-scroll.is-visible .faq-item:nth-child(5) { animation-delay: 0.38s; }
+.reveal-on-scroll.is-visible .faq-item:nth-child(6) { animation-delay: 0.46s; }
+
+/* Craft detail strip columns */
+#craft-details.reveal-on-scroll.is-visible .grid > div {
+  animation: revealChildIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+#craft-details.reveal-on-scroll.is-visible .grid > div:nth-child(1) { animation-delay: 0.05s; }
+#craft-details.reveal-on-scroll.is-visible .grid > div:nth-child(2) { animation-delay: 0.12s; }
+#craft-details.reveal-on-scroll.is-visible .grid > div:nth-child(3) { animation-delay: 0.19s; }
+#craft-details.reveal-on-scroll.is-visible .grid > div:nth-child(4) { animation-delay: 0.26s; }
+
+/* Perk / promise cards */
+.reveal-on-scroll.is-visible .grid.lg\:grid-cols-4 > div {
+  animation: revealChildIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.reveal-on-scroll.is-visible .grid.lg\:grid-cols-4 > div:nth-child(1) { animation-delay: 0.08s; }
+.reveal-on-scroll.is-visible .grid.lg\:grid-cols-4 > div:nth-child(2) { animation-delay: 0.16s; }
+.reveal-on-scroll.is-visible .grid.lg\:grid-cols-4 > div:nth-child(3) { animation-delay: 0.24s; }
+.reveal-on-scroll.is-visible .grid.lg\:grid-cols-4 > div:nth-child(4) { animation-delay: 0.32s; }
+
+@keyframes revealChildIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .product-card-fluid,
+  .product-card-fluid.is-in,
+  .reveal-on-scroll,
+  .reveal-child,
+  .reveal-on-scroll.is-visible .editorial-panel,
+  .reveal-on-scroll.is-visible .faq-item {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- Filter buttons ---------- */
+.filter-btn {
+  border: 1px solid rgba(244, 241, 234, 0.08);
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.filter-btn:hover {
+  border-color: rgba(0, 229, 255, 0.35);
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.05);
+}
+
+/* ---------- Editorial panels ---------- */
+.editorial-panel {
+  border-radius: 1.1rem !important;
+  transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+}
+
+.editorial-panel:hover {
+  transform: translateY(-4px);
+  border-color: rgba(244, 241, 234, 0.28);
+}
+
+/* ---------- Badge pop ---------- */
+@keyframes badgePop {
+  0% { transform: scale(0.85); opacity: 0; }
+  60% { transform: scale(1.06); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.product-card-fluid .badge-pop {
+  animation: badgePop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ---------- Soft ambient orbs in product stage ---------- */
+.kv-stage-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(28px);
+  opacity: 0.35;
+  animation: orbDrift 8s ease-in-out infinite;
+}
+
+.kv-stage-orb.orb-a {
+  width: 90px;
+  height: 90px;
+  background: #E62429;
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.kv-stage-orb.orb-b {
+  width: 70px;
+  height: 70px;
+  background: #00E5FF;
+  bottom: 18%;
+  right: 12%;
+  animation-delay: -3s;
+}
+
+@keyframes orbDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(8px, -10px) scale(1.08); }
+  66% { transform: translate(-6px, 6px) scale(0.95); }
+}
+
+/* ---------- Accessory / sticker / case specific layouts ---------- */
+.kv-accessory-frame {
+  width: 140px;
+  height: 140px;
+  border-radius: 1.25rem;
+  background: linear-gradient(145deg, rgba(42, 46, 55, 0.9), rgba(15, 17, 21, 0.95));
+  border: 1px solid rgba(244, 241, 234, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.1rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.product-card-fluid:hover .kv-accessory-frame {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 229, 255, 0.08);
+}
+
+.kv-sticker-stack {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.kv-sticker-stack .sticker {
+  position: absolute;
+  width: 78px;
+  height: 78px;
+  border-radius: 1rem;
+  background: #0F1115;
+  border: 2px solid rgba(244, 241, 234, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.kv-sticker-stack .sticker:nth-child(1) {
+  top: 0;
+  left: 0;
+  transform: rotate(-8deg);
+  z-index: 2;
+}
+
+.kv-sticker-stack .sticker:nth-child(2) {
+  bottom: 0;
+  right: 0;
+  transform: rotate(10deg);
+  z-index: 1;
+}
+
+.product-card-fluid:hover .kv-sticker-stack .sticker:nth-child(1) {
+  transform: rotate(-14deg) translateY(-4px);
+}
+
+.product-card-fluid:hover .kv-sticker-stack .sticker:nth-child(2) {
+  transform: rotate(16deg) translateY(4px);
+}
+
+/* Phone case visual */
+.kv-phone-case {
+  position: relative;
+  width: 92px;
+  height: 168px;
+  border-radius: 1.4rem;
+  background: linear-gradient(160deg, #2A2E37, #0F1115);
+  border: 4px solid rgba(244, 241, 234, 0.2);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  padding: 0.55rem;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.kv-phone-case::before {
+  content: "";
+  position: absolute;
+  top: 0.45rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2.2rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: rgba(15, 17, 21, 0.9);
+  z-index: 2;
+}
+
+.kv-phone-case-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  background: #0a0c10;
+  border: 1px solid rgba(244, 241, 234, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  overflow: hidden;
+}
+
+.product-card-fluid:hover .kv-phone-case {
+  transform: rotate(-4deg) translateY(-6px);
+}
+
+/* Cap visual */
+.kv-cap-frame {
+  width: 150px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- CTA button shimmer ---------- */
+@keyframes shimmer {
+  0% { background-position: -120% 0; }
+  100% { background-position: 220% 0; }
+}
+
+.product-card-fluid button[onclick*="addToCart"] {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card-fluid button[onclick*="addToCart"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.12) 45%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.product-card-fluid:hover button[onclick*="addToCart"]::after {
+  opacity: 1;
+  animation: shimmer 1.8s ease infinite;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .kv-hero-stage,
+  .kv-marquee > div,
+  .kv-stage-orb,
+  .kv-art-accent,
+  .product-card-fluid:hover .kv-product-stage,
+  .product-card-fluid:hover .kv-sticker-stack .sticker,
+  .product-card-fluid:hover .kv-phone-case {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- Mobile hero tweaks ---------- */
+@media (max-width: 640px) {
+  .kv-hero {
+    min-height: auto;
+  }
+  .kv-hero-visual {
+    max-width: 320px;
+  }
+  .kv-photo-stamp {
+    font-size: 0.55rem;
+  }
+}
+
+
+/* ---------- Brand logo system ---------- */
+.kv-brand-lockup .kv-logo-emblem {
+  flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
+}
+header a[href="#top"]:hover .kv-logo-emblem {
+  transform: rotate(-6deg) scale(1.06);
+  filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.35));
+}
+.kv-logo-wordmark,
+.kv-logo-emblem,
+.kv-logo-mono,
+.kv-logo-collection,
+.kv-logo-seal {
+  display: block;
+}
+.kv-photo-stamp {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.kv-photo-stamp .kv-logo-seal {
+  opacity: 0.9;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.35));
+  animation: sealFloat 5s ease-in-out infinite;
+}
+@keyframes sealFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(2deg); }
+}
+.kv-logo-collection {
+  opacity: 0.95;
+}
+#spider-collection .kv-logo-collection,
+#anime-collection .kv-logo-collection {
+  margin-bottom: 0.35rem;
+}
+footer .kv-logo-mono {
+  opacity: 0.9;
+}

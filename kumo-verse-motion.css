@@ -1,0 +1,43 @@
+/* KUMO // VERSE — standalone visual redesign layer */
+:root{--kv-red:#ff3048;--kv-blue:#20e8ff;--kv-ink:#07090e;--kv-paper:#f4f1ea;--kv-ease:cubic-bezier(.2,.8,.2,1)}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:#07090e!important;background-image:radial-gradient(ellipse at 12% 8%,#ff30481c,transparent 32rem),radial-gradient(ellipse at 88% 28%,#20e8ff18,transparent 34rem),linear-gradient(145deg,#080a10 0%,#111521 48%,#080a10 100%)!important;background-attachment:fixed!important}
+body:after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.16;background:repeating-linear-gradient(125deg,transparent 0 90px,#20e8ff12 91px,#20e8ff12 92px,transparent 93px 180px);animation:kv-grid-drift 28s linear infinite}
+@keyframes kv-grid-drift{to{background-position:360px 0}}
+#scroll-progress-bar{height:3px!important;background:linear-gradient(90deg,var(--kv-red),#a855f7,var(--kv-blue))!important;box-shadow:0 0 14px #20e8ff99}
+header{background:#080a10d9!important;border-bottom:1px solid #ffffff20!important;backdrop-filter:blur(22px) saturate(160%)!important}
+header>a[href="#top"]{position:relative}
+header a[href="#top"] span:first-child{font-size:clamp(19px,2vw,25px)!important;letter-spacing:.16em!important;text-shadow:0 0 24px #ff304855}
+.kv-brand-mark{width:34px;height:34px;display:inline-grid;place-items:center;border:1px solid #20e8ff88;border-radius:11px;background:linear-gradient(145deg,#ff304833,#20e8ff1c);box-shadow:0 0 22px #20e8ff24;transform:rotate(-8deg);transition:.4s var(--kv-ease)}
+.kv-brand-mark svg{width:23px;height:23px;filter:drop-shadow(0 0 5px #ff3048)}
+header a[href="#top"]:hover .kv-brand-mark{transform:rotate(8deg) scale(1.12);box-shadow:0 0 28px #20e8ff66}
+#top{min-height:620px;display:flex;align-items:center;background-color:transparent!important}
+#top>.max-w-7xl{width:100%;padding-top:clamp(70px,9vw,130px)!important;padding-bottom:clamp(70px,9vw,130px)!important}
+#top h1{font-size:clamp(3.1rem,7.3vw,7.5rem)!important;letter-spacing:-.075em!important;line-height:.91!important;max-width:950px;text-wrap:balance;text-shadow:0 12px 60px #0009}
+#top h1 span{background:linear-gradient(100deg,#ffffff80,#20e8ff 48%,#ff5365);background-clip:text;-webkit-background-clip:text;color:transparent!important}
+#top .animate-fade-up:first-child{border-color:#20e8ff55!important;background:#101722c9!important;box-shadow:0 0 30px #20e8ff12}
+#top .animate-fade-up:first-child span:first-child{box-shadow:0 0 12px var(--kv-red)}
+#hero-emblem-card{width:min( min(38vw,440px),82vw)!important;height:auto!important;aspect-ratio:1!important;border:1px solid #20e8ff66!important;border-radius:36px!important;box-shadow:0 30px 100px #0009,0 0 55px #20e8ff18,inset 0 0 50px #ff304812!important;animation:kv-float 6s ease-in-out infinite!important}
+@keyframes kv-float{0%,100%{translate:0 0}50%{translate:0 -13px}}
+#hero-art{width:100%;height:100%;display:grid;place-items:center}
+#hero-art svg{width:100%;height:100%;max-width:300px;filter:drop-shadow(0 0 22px #ff304866)}
+.cinematic-art{overflow:visible;filter:drop-shadow(0 0 13px color-mix(in srgb,var(--art-a,#ff3048) 45%,transparent));animation:kv-logo-pulse 4.5s ease-in-out infinite}
+@keyframes kv-logo-pulse{0%,100%{filter:drop-shadow(0 0 5px #ff304844)}50%{filter:drop-shadow(0 0 18px #20e8ff99)}}
+.cinematic-art .orbit-line{transform-origin:100px 100px;animation:kv-orbit 30s linear infinite}
+@keyframes kv-orbit{to{transform:rotate(360deg)}}
+#spider-collection,#anime-collection,#drop-story,#shop-details{scroll-margin-top:90px}
+#spider-collection,#anime-collection{position:relative}
+#spider-collection h2,#anime-collection h2{font-size:clamp(2rem,4.5vw,4rem)!important;letter-spacing:-.055em!important}
+.product-card-fluid{border:1px solid #ffffff18!important;border-radius:22px!important;background:linear-gradient(145deg,#ffffff0d,#0b0e16d9)!important;box-shadow:0 16px 50px #0003;transition:transform .45s var(--kv-ease),border-color .35s,box-shadow .35s!important;transform-style:preserve-3d}
+.product-card-fluid:hover{border-color:#20e8ff88!important;box-shadow:0 25px 70px #0008,0 0 28px #20e8ff12!important}
+.product-card-fluid img{transition:transform .65s var(--kv-ease),filter .65s!important}
+.product-card-fluid:hover img{transform:scale(1.055)!important;filter:saturate(1.22) contrast(1.06)!important}
+.product-card-fluid .group-hover\:scale-105{transition:transform .6s var(--kv-ease)}
+.filter-btn{border-radius:999px!important;transition:all .25s var(--kv-ease)!important}
+.filter-btn:hover,.filter-btn.active{border-color:#20e8ff99!important;box-shadow:0 0 22px #20e8ff18!important}
+.editorial-panel{background:linear-gradient(140deg,#ffffff0b,#ffffff03)!important;border-color:#ffffff1c!important;backdrop-filter:blur(12px)}
+button,a{transition-timing-function:var(--kv-ease)!important}
+.kv-pointer-glow{position:fixed;width:300px;height:300px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,#20e8ff0b,transparent 68%);transform:translate(-50%,-50%)}
+.kv-reveal{opacity:0;transform:translateY(24px);transition:opacity .75s var(--kv-ease),transform .75s var(--kv-ease)}.kv-reveal.kv-in{opacity:1;transform:none}
+@media(max-width:767px){#top{min-height:unset}#top h1{font-size:clamp(3rem,13vw,5rem)!important}#hero-emblem-card{width:min(78vw,340px)!important;margin:auto}.kv-pointer-glow{display:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.kv-reveal{opacity:1;transform:none}}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" role="img" aria-label="K/V monogram">
+  <title>K/V</title>
+  <rect x="8" y="8" width="184" height="184" rx="28" stroke="#F4F1EA" stroke-opacity="0.2" stroke-width="2"/>
+  <rect x="18" y="18" width="164" height="164" rx="22" stroke="#E62429" stroke-opacity="0.5" stroke-width="1.5"/>
+  <!-- K -->
+  <path d="M52 48 V152 M52 100 L100 48 M52 100 L100 152" stroke="#F4F1EA" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Slash -->
+  <path d="M108 128 L128 72" stroke="#E62429" stroke-width="10" stroke-linecap="round"/>
+  <!-- V -->
+  <path d="M132 48 L152 152 L172 48" stroke="#00E5FF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
